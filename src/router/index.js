@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,6 +10,26 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/signUp',
+    name:'sign up',
+    component: () => import(/* webpackChunkName: "signUp" */ '../views/signUp.vue')
+  },
+  {
+    path: '/appForm',
+    name:'application form ',
+    component: () => import(/* webpackChunkName: "appForm" */ '../views/appForm.vue')
+  },
+  {
+    path: '/applicantSidebar',
+    name:'applicantSidebar ',
+    component: () => import(/* webpackChunkName: "applicantSidebar" */ '../components/applicantSidebar.vue')
+  },
+  {
+    path: '/applicantDashboard',
+    name:'applicantDashboard ',
+    component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue')
   },
   {
     path: '/about',
