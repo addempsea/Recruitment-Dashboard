@@ -47,9 +47,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "question" */ '../views/question.vue')
   },
   {
+    path: '/successfulPage',
+    name:'successfulPage ',
+    component: () => import(/* webpackChunkName: "successfulPage" */ '../views/successfulPage.vue')
+  },
+  {
     path: '/QuestionPage',
     name:'QuestionPage ',
     component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
+  },
+  {
+    path: '/Success',
+    name:'Success ',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
   },
   {
     path: '/about',

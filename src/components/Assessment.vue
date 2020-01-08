@@ -42,6 +42,7 @@
     color: #4F4F4F;
     margin-top: 0px;
     line-height: 17px;
+    margin-top: 40px;
 }
 .right p {
     

@@ -149,6 +149,7 @@ color: #2B3C4E;
     color: #4F4F4F;
     margin-top: 0px;
     line-height: 17px;
+    margin-top: 40px;
 }
 .p-tag {
     font-family: Lato;
