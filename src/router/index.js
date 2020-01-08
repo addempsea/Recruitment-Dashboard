@@ -32,6 +32,26 @@ const routes = [
     component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue')
   },
   {
+    path: '/Assessment',
+    name:'Assessment ',
+    component: () => import(/* webpackChunkName: "Assessment" */ '../components/Assessment.vue')
+  },
+  {
+    path: '/takeAssessment',
+    name:'takeAssessment ',
+    component: () => import(/* webpackChunkName: "takeAssessment" */ '../views/takeAssessment.vue')
+  },
+  {
+    path: '/question',
+    name:'question ',
+    component: () => import(/* webpackChunkName: "question" */ '../views/question.vue')
+  },
+  {
+    path: '/QuestionPage',
+    name:'QuestionPage ',
+    component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting

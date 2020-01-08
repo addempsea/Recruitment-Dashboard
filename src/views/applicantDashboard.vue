@@ -36,7 +36,7 @@
                     <p>Take Assessment</p>
                     <div class="take-assessment-body">
                         <p>We have 4 days left until the next assessment <br> Watch this space</p>
-                        <button>Take Assessment</button>
+                         <router-link to='/takeAssessment'><button>Take Assessment</button></router-link>
                     </div>
                 </div>
             </div>
