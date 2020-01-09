@@ -17,11 +17,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "signUp" */ '../views/signUp.vue')
   },
   {
-    path: '/appForm',
-    name:'application form ',
-    component: () => import(/* webpackChunkName: "appForm" */ '../views/appForm.vue')
-  },
-  {
     path: '/applicantSidebar',
     name:'applicantSidebar ',
     component: () => import(/* webpackChunkName: "applicantSidebar" */ '../components/applicantSidebar.vue')
@@ -52,6 +47,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "successfulPage" */ '../views/successfulPage.vue')
   },
   {
+    path: '/applicantSignup',
+    name:'applicantSignup ',
+    component: () => import(/* webpackChunkName: "applicantSignup" */ '../views/applicantSignup.vue')
+  },
+  {
     path: '/QuestionPage',
     name:'QuestionPage ',
     component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
@@ -61,14 +61,7 @@ const routes = [
     name:'Success ',
     component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+
 ]
 
 const router = new VueRouter({

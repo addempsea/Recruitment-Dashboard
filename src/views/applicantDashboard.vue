@@ -4,28 +4,28 @@
             <applicantSidebar/>
         </div>
 
-        <div class="dashboard"> 
+        <div class="dashboard-head"> 
             <div class="head">
                 <p>Dashboard</p>
                 <span>Your Application is currently being review, you wil be notified if successful</span>
             </div>
 
-            <div class="date-status">
-                <div class="date">
+            <div class="time-status">
+                <div class="time">
                     <p>Date of Application</p>
                     <span> 09.09.19</span>
-                    <div class="for-status"></div>
+                    <div class="horizontal"></div>
                     <p class="small-text">4 days since applied</p>
                 </div>
-                <div class="status">
+                <div class="app-status">
                     <p>Application Status</p>
                     <span> Pending</span>
-                    <div class="for-status2"></div>
+                    <div class="app-status2"></div>
                     <p class="small-text">We will get back to you</p>
                 </div>
             </div>
 
-            <div class="update-assessment">
+            <div class="assessment">
                 <div class="update">
                     <p>Update</p>
                     <div class="horizontal-line">
@@ -63,7 +63,7 @@ export default {
 
 
 <style scoped>
-.dashboard {
+.dashboard-head {
     margin-left: 292px;
     margin-top: 107px;
     margin-bottom: 86px;
@@ -84,7 +84,7 @@ export default {
     font-size: 16px;
     color: #2B3C4E;
 }
-.date-status {
+.time-status {
     display: flex;
     margin-top: 61px;
 }
@@ -95,14 +95,14 @@ export default {
     color: solid #CECECE; 
     
 }
-.date p {
+.time p {
     font-family: 'Lato';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     color: #4F4F4F;
 }
-.date span {
+.time span {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
@@ -116,39 +116,37 @@ export default {
     font-size: 12px;
     color: #4F4F4F;
 }
-.status {
+.app-status {
     margin-left: 87px;
 }
-/* .take-assessment {
-    padding-left: 100px;
-} */
-.status p {
+
+.app-status p {
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     color: #4F4F4F;
 }
-.status span {
+.app-status span {
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 48px;
     color: #2B3C4E;
 }
-.for-status {
+.horizontal {
     width: 80%;
     height: 4px;
     background: #006DF0;
     border-radius: 4px;
 }
-.for-status2 {
+.app-status2 {
     width: 80%;
     height: 4px;
     background: #F09000;
     border-radius: 4px;
 }
-.update-assessment {
+.assessment {
     margin-top: 97px;
     display: flex;
 }
@@ -192,14 +190,6 @@ export default {
     margin-top: 189px;
 }
 .take-assessment-body p {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16.7273px;
-    text-align: center;
-    color: #4F4F4F;
-}
-.links {
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;

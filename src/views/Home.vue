@@ -1,8 +1,8 @@
 <template>
 <div>
    <div class="home">
-    <img alt="Enyata-logo" src="../assets/enyata-logo.png">
-    <h5>enyata</h5>
+    <img class="logo" alt="Enyata-logo" src="../assets/enyata-logo.png">
+    <h5 class="enyata">enyata</h5>
     <h6>Application Sign Up</h6>
   </div>
   <div class="input-form">
@@ -35,7 +35,7 @@
       </div>
     </form>
   </div>
-   <router-link to='/signUp'><button>Sign Up</button></router-link>
+   <button>Sign Up</button>
   <p class="link">Already have an account?<a href="">Sign In</a></p>
 </div>
  
@@ -48,6 +48,15 @@
   margin-left: 400px;
   margin-top: 50px;
 
+}
+.home {
+  margin-left: 650px;
+}
+.logo {
+  padding-left:65px; 
+}
+.enyata {
+  padding-left:50px;
 }
 .form-item {
   display: block;
@@ -100,9 +109,10 @@ button {
   background-color: #2B3C4E;
   color:white;
   border-radius: 4px;
-  width:400px;
-  height: 45px;
+  width:520px;
+  height: 50px;
   margin-top: 40px;
+  margin-left: 500px;
 }
 
 .link {

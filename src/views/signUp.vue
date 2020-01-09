@@ -1,8 +1,8 @@
 <template>
   <div class="applicant-form">
     <div class="home">
-      <img alt="Enyata-logo" src="../assets/enyata-logo.png" />
-      <h5>enyata</h5>
+      <img class="logo" alt="Enyata-logo" src="../assets/enyata-logo.png" />
+      <h5 class="enyata">enyata</h5>
       <h6>Applicant Log In</h6>
     </div>
     <div>
@@ -17,7 +17,7 @@
         </div>
       </form>
     </div>
-    <router-link to="/appForm"><button>Sign In</button></router-link>
+    <button>Sign In</button>
     <div class="account">
       <p>Don't have an account yet?<a>Sign Up</a></p>
       <p class="password">Forget Password?</p>
@@ -29,6 +29,15 @@
 .applicant-form {
     max-width: 400px;
     margin: 0 auto;
+}
+.home {
+  margin-left: 100px;
+}
+.logo {
+  padding-left:65px; 
+}
+.enyata {
+  padding-left:50px;
 }
 .form-item {
   text-align: left;
