@@ -32,9 +32,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "Assessment" */ '../components/Assessment.vue')
   },
   {
+    path: '/createPage',
+    name:'createPage ',
+    component: () => import(/* webpackChunkName: "createPage" */ '../components/createPage.vue')
+  },
+  {
+    path: '/ComposePage',
+    name:'ComposePage ',
+    component: () => import(/* webpackChunkName: "ComposePage" */ '../components/ComposePage.vue')
+  },
+  {
+    path: '/adminsidebar',
+    name:'adminsidebar ',
+    component: () => import(/* webpackChunkName: "adminsidebar" */ '../components/AdminSidebar.vue')
+  },
+  {
     path: '/takeAssessment',
     name:'takeAssessment ',
     component: () => import(/* webpackChunkName: "takeAssessment" */ '../views/takeAssessment.vue')
+  },
+  {
+    path: '/composeAssessment',
+    name:'composeAssessment ',
+    component: () => import(/* webpackChunkName: "composeAssessment" */ '../views/composeAssessment.vue')
   },
   {
     path: '/question',

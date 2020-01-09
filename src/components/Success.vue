@@ -1,106 +1,126 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="container-side">
-                <div class="p-tag"><p>Take Assessment</p></div>
-                <p class="dot-text">Thank you!</p>
-            </div>
-            <div class="right">
-                <h2>Timer</h2>
-                <p>23min0043sec</p>
-            </div>
+  <div>
+    <div class="container">
+      <div class="container-side">
+        <div class="p-tag"><p>Take Assessment</p></div>
+        <p class="dot-text">Thank you!</p>
+      </div>
+      <div class="right">
+        <p>Timer</p>
+        <div class="span">
+          <div>
+            <span>00<span class="minute">min</span></span>
+          </div>
+          <div>
+            <span class="seconds">010<span class="minute">sec</span></span>
+          </div>
         </div>
-        <div>
-            <div class="image">
-            <img src="../assets/confetti.png" alt="">
-            </div>
-            <div class="message">
-            <p>We have received your assessment test, we will get back to you soon.</p>
-            <p class="best-luck">Best of luck</p>
-            </div>
-        </div>
-        
-            <button class="button">Home</button>
-        
-        
-
+      </div>
     </div>
+    <div class="center">
+      <div class="image">
+        <img src="../assets/confetti.png" alt="" />
+      </div>
+      <div class="message">
+        <p>
+          We have received your assessment test, we will get back to you soon.
+        </p>
+        <p class="best-luck">Best of luck</p>
+      </div>
+    </div>
+
+    <button class="button">Home</button>
+  </div>
 </template>
 
-
 <style scoped>
+/* .center {
+    margin-top: 40px;
+} */
+.right {
+  margin-bottom: 150px;
+  margin-left: 150px;
+}
+span {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 48px;
+}
+.span {
+  display: flex;
+}
+.seconds {
+  padding-left: 30px;
+}
+.minute {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
 .best-luck {
-    margin-left:200px;
-    /* margin-bottom: 100px;  */
+  margin-left: 200px;
+  /* margin-bottom: 100px;  */
 }
 .button {
-    background: #31D283;
-    border-radius: 4px;
-    color:white;
-    width:205px;
-    height:41px;
-    margin-left: 400px;
-    margin-top: 20px;
+  background: #31d283;
+  border-radius: 4px;
+  color: white;
+  width: 205px;
+  height: 41px;
+  margin-left: 400px;
+  margin-top: 20px;
 }
 .image {
-    margin-left: 450px;
-    margin-top: 90px;
+  margin-left: 450px;
 }
 .message {
-    margin-left: 250px;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16.7273px;
+  margin-left: 250px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.7273px;
 }
 .container {
-    display: flex;
-    justify-content: space-between;
-    
+  display: flex;
+  justify-content: space-between;
 }
-.dot-text{
-    width: 510px;
-    font-family: Lato;
-    font-style: italic;
-    font-weight: bold;
-    font-size: 14px;
-    color: #2B3C4E;
-    margin-left: 0px;
+.dot-text {
+  width: 510px;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 14px;
+  color: #2b3c4e;
+  margin-left: 0px;
 }
 .container > p {
-    font-family: Lato;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 16px;
-    color: #2B3C4E;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2b3c4e;
 }
 .right h2 {
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    color: #4F4F4F;
-    margin-top: 0px;
-    line-height: 17px;
-    margin-top: 40px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-top: 0px;
+  line-height: 17px;
+  margin-top: 40px;
 }
 .p-tag {
-    font-family: Lato;
-    font-style: normal;
-    /* font-weight: 100; */
-    font-size: 30px;
-    line-height: 52px;
-    letter-spacing: -0.02em;
-    color: #2B3C4E;
-    margin-right: 300px;
-}
-.right p {
-    
-    font-family: Lato;
-    font-style: normal;
-    font-weight: lighter;
-    font-size: 48px;
-    color: #2B3C4E;
-    /* margin-bottom: 300px; */
+  font-family: Lato;
+  font-style: normal;
+  /* font-weight: 100; */
+  font-size: 30px;
+  line-height: 52px;
+  letter-spacing: -0.02em;
+  color: #2b3c4e;
+  margin-right: 300px;
 }
 </style>

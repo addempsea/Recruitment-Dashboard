@@ -8,7 +8,7 @@
     <div class="form-wrapper">
       <form>
         <div class="upload-form">
-          <input type="file" />
+          <input class="former" type="text" placeholder="+ Upload File">
         </div>
 
         <div class="row mt-3">
@@ -65,17 +65,22 @@
 form {
   padding: 100px;
 }
+.former {
+  border: 1.5px dashed #2B3C4E;
+  width: 211px;
+  height: 49px;
+}
 
 .icon {
   margin-right: 15px;
 }
-.upload-form {
+/* .upload-form {
   border: 1.5px dashed #2B3C4E;
   width: 305px;
   height: 35px;
   margin-left: 200px;
   margin-bottom: 60px;
-}
+} */
 .enyata-logo {
   width: 49px;
   height: 52px;
