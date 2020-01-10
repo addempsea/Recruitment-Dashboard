@@ -72,6 +72,7 @@ span {
   height: 41px;
   margin-left: 400px;
   margin-top: 20px;
+   border: none;
 }
 .image {
   margin-left: 450px;

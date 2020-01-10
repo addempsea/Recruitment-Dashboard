@@ -146,5 +146,6 @@ button {
   margin-left: auto;
   margin-right: auto;
   display: block;
+  border: none;
 }
 </style>

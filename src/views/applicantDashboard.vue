@@ -108,6 +108,7 @@ export default {
   font-weight: normal;
   font-size: 14px;
   color: #4f4f4f;
+  margin-top: 20px;
 }
 .time span {
   font-family: "Lato";
@@ -133,6 +134,7 @@ export default {
   font-weight: normal;
   font-size: 14px;
   color: #4f4f4f;
+  margin-top: 20px;
 }
 .app-status span {
   font-family: "Lato", sans-serif;
@@ -219,5 +221,6 @@ button {
   margin-left: auto;
   margin-right: auto;
   display: block;
+   border: none;
 }
 </style>

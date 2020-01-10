@@ -74,6 +74,7 @@ margin: 0 auto;
   height: 50px;
   border: none;
   margin-top: 40px;
+   border: none;
 }
 .password {
   padding-left: 100px;

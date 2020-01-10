@@ -113,10 +113,11 @@ button {
   height: 50px;
   margin-top: 40px;
   margin-left: 500px;
+   border: none;
 }
 
 .link {
-  /* font-family: Lato; */
+  font-family: Lato;
   font-style: italic;
   font-weight: normal;
   text-align: center;

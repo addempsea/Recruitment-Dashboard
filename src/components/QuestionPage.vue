@@ -83,6 +83,7 @@ span {
   width: 205px;
   height: 41px;
   color: white;
+   border: none;
 }
 .second-button {
   background: #2b3c4e;
@@ -90,6 +91,7 @@ span {
   color: white;
   width: 125px;
   height: 41px;
+   border: none;
 }
 .first-button {
   background: #2b3c4e;
@@ -97,6 +99,7 @@ span {
   color: white;
   width: 125px;
   height: 41px;
+   border: none;
 }
 .two-buttons {
   display: flex;
