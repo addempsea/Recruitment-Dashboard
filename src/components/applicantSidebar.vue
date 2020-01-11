@@ -10,7 +10,7 @@
 
     <div class="sidebar-icon">
       <div class="active">
-        <p><img src="../assets/dashboard.png" class="icon" />Dashboard</p>
+        <button><img src="../assets/dashboard.png" class="icon" />Dashboard</button>
       </div>
       <div>
         <p><img src="../assets/assessment.png" class="icon" />Assessment</p>
