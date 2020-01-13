@@ -2,7 +2,9 @@
   <div>
     <div class="container">
       <div class="container-side">
-        <div class="p-tag"><p>Take Assessment</p></div>
+        <div class="p-tag">
+          <p>Take Assessment</p>
+        </div>
         <p class="dot-text">
           Click the button below to start assessment, you have limited time for
           this test
@@ -12,10 +14,16 @@
         <p>Timer</p>
         <div class="span">
           <div>
-            <span>00<span class="minute">min</span></span>
+            <span>
+              {{demo}}
+              <span class="minute">min</span>
+            </span>
           </div>
           <div>
-            <span class="seconds">000<span class="minute">sec</span></span>
+            <span class="seconds">
+              000
+            <span class="minute">sec</span>
+            </span>
           </div>
         </div>
       </div>
@@ -25,18 +33,47 @@
       <center>
         <img class="timer-logo" src="../assets/timer.png" alt="timer" />
         <p>
-          We have four days left until the next assessment <br />Watch this
+          We have four days left until the next assessment
+          <br />Watch this
           space
         </p>
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle">
-            Take Assessment
-          </button>
+         <router-link :to="{name: 'question'}"> <button class="btn btn-secondary ">Take Assessment</button></router-link>
         </div>
       </center>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'assessment',
+  data() {
+    return {
+      demo: 6,
+      int: 1000
+    }
+  },
+
+  computed: {
+    timer() {
+      return this.demo + 1
+    },
+
+    // setInterval(this.timer(), 1000)
+  },
+
+  methods: {
+    leter () {
+      setTimeout(() => {
+        this.demo + 1;
+      }, 1000);
+
+      return this.demo
+    }
+  },
+}
+</script>
 
 <style scoped>
 .right {

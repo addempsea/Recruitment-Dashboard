@@ -5,68 +5,155 @@
       <h3>enyata</h3>
       <p>Applicant Form</p>
     </div>
-    <div class="form-wrapper">
-      <form>
-        <div class="upload-form">
-          <input class="former" type="text" placeholder="+ Upload File" />
+    <div class="form-wrapper mx-5">
+      <form class="mx-5 p-5" enctype="multipart/form-data" @submit.prevent="submitForm">
+        <div class="fileup">
+          <div class="upload-btn-wrapper">
+            <button class="btns">+ upload cv</button>
+            <input type="file" name="file" ref="file" @change="handleFileUpload" />
+          </div>
         </div>
 
         <div class="row mt-3">
           <div class="col">
             <label>First Name</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="fname" name="fname" />
           </div>
           <div class="col">
             <label>Last Name</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="lname" name="lname" />
           </div>
         </div>
 
         <div class="row rows">
           <div class="col">
             <label>Email</label>
-            <input type="email" class="form-control" />
+            <input type="email" class="form-control" v-model="email" name="email" />
           </div>
           <div class="col">
             <label>Date of Birth</label>
-            <input type="date" class="form-control" />
+            <input type="date" class="form-control" v-model="dob" name="dob" />
           </div>
         </div>
 
         <div class="row rows">
           <div class="col">
             <label>Address</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="address" name="address" />
           </div>
           <div class="col">
             <label>University</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="university" name="university" />
           </div>
         </div>
 
         <div class="row rows">
           <div class="col">
             <label>Course of Study</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="course" name="course" />
           </div>
           <div class="col">
             <label>CGPA</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="cgpa" name="cgpa" />
           </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary mt-3" type="submit">Submit</button>
       </form>
     </div>
   </div>
 </template>
 
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+  name: "application",
+  data() {
+    return {
+      file: "",
+      fname: "",
+      lname: "",
+      email: "",
+      cgpa: "",
+      dob: "",
+      address: "",
+      course: "",
+      university: ""
+    };
+  },
+
+  computed: {
+    ...mapGetters(["apiResponse", "getUser"]),
+
+    isValid() {
+      if (
+        this.email == "" ||
+        this.file == "" ||
+        this.fname == "" ||
+        this.lname == "" ||
+        this.address == "" ||
+        this.university == "" ||
+        this.dob == "" ||
+        this.course == ""
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(["application"]),
+
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+
+    submitForm() {
+      if (this.isValid) {
+        let formData = new FormData();
+        formData.append("file", this.file);
+        formData.append("lname", this.lname);
+        formData.append("fname", this.fname);
+        formData.append("email", this.email);
+        formData.append("address", this.address);
+        formData.append("dob", this.dob);
+        formData.append("cgpa", this.cgpa);
+        formData.append("course", this.course);
+        formData.append("university", this.university);
+        console.log(formData);
+        this.application(formData);
+      } else {
+        alert("All fields are required");
+      }
+    }
+  },
+
+  watch: {
+    apiResponse(val) {
+      if (val.type == "success") {
+        setTimeout(() => {
+          this.$router.push({ name: "applicantDashboard ",
+          params: {id: this.getUser} });
+        }, 3000);
+      }
+    }
+  }
+};
+</script>
+
 <style scoped>
+.fileup {
+  display: flex;
+  justify-content: center;
+}
+
 form {
-  padding: 100px;
+  /* padding: 100px; */
 }
 .former {
-  border: 1.5px dashed #2b3c4e;
+  border: 2px dashed #2b3c4e;
   width: 211px;
   height: 49px;
 }
@@ -80,8 +167,8 @@ form {
 }
 .form-container-head {
   text-align: center;
-  margin-top: 116px;
 }
+
 .form-container-head h3 {
   font-family: "Lato", sans-serif;
   font-style: normal;
@@ -98,14 +185,14 @@ form {
   color: #2b3c4e;
 }
 .form-wrapper {
-  width: 90%;
-  max-width: 963px;
-  height: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 45px;
-  margin-bottom: 171px;
-  display: block;
+  /* width: 90%; */
+  /* max-width: 963px;
+  height: 800px; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* margin-top: 45px;
+  margin-bottom: 171px; */
+  /* display: block; */
   background: #ffffff;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
@@ -113,15 +200,35 @@ form {
 
 .form {
   width: 90%;
-  max-width: 830px;
-  height: 469px;
+  /* max-width: 830px; */
+  /* height: 469px; */
   margin-left: auto;
   margin-right: auto;
   display: block;
-  padding-top: 51px;
+  /* padding-top: 51px; */
 }
-.rows {
-  margin-top: 40px;
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btns {
+  border: 2px dashed gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 label {
   font-family: "Lato", sans-serif;
@@ -141,12 +248,12 @@ input {
   margin-right: auto;
 }
 .btn {
-  width: 70%;
+  /* width: 70%;
   max-width: 379px;
-  height: 50px;
+  height: 50px; */
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   display: block;
   background: #2b3c4e;
   border-radius: 4px;

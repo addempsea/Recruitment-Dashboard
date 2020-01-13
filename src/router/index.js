@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home'
+import register from '../views/signup.vue'
 
 
 Vue.use(VueRouter)
@@ -12,9 +13,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/signUp',
-    name:'sign up',
-    component: () => import(/* webpackChunkName: "signUp" */ '../views/signUp.vue')
+    path: '/register',
+    name:'register',
+    component: register
+  },
+  {
+    path: '/login',
+    name:'login',
+    component: () => import(/* webpackChunkName: "signUp" */ '../views/login.vue')
   },
   {
     path: '/applicantSidebar',
@@ -22,7 +28,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "applicantSidebar" */ '../components/applicantSidebar.vue')
   },
   {
-    path: '/applicantDashboard',
+    path: '/applicantdashboard',
     name:'applicantDashboard ',
     component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue')
   },
@@ -58,7 +64,7 @@ const routes = [
   },
   {
     path: '/takeAssessment',
-    name:'takeAssessment ',
+    name:'takeAssessment',
     component: () => import(/* webpackChunkName: "takeAssessment" */ '../views/takeAssessment.vue')
   },
   {
@@ -68,7 +74,7 @@ const routes = [
   },
   {
     path: '/question',
-    name:'question ',
+    name:'question',
     component: () => import(/* webpackChunkName: "question" */ '../views/question.vue')
   },
   {
@@ -78,7 +84,7 @@ const routes = [
   },
   {
     path: '/applicantSignup',
-    name:'applicantSignup ',
+    name:'applicantSignup',
     component: () => import(/* webpackChunkName: "applicantSignup" */ '../views/applicantSignup.vue')
   },
   {
@@ -90,6 +96,11 @@ const routes = [
     path: '/Success',
     name:'Success ',
     component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
+  },
+  {
+    path: '/test',
+    name:'test',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/TestTester.vue')
   },
 
 ]

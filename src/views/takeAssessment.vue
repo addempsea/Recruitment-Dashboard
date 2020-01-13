@@ -14,7 +14,7 @@
 import applicantSidebar from '@/components/applicantSidebar.vue'
 import Assessment from '@/components/Assessment.vue'
 export default {
-    name: 'home',
+    name: 'test',
     components: {
        applicantSidebar,
        Assessment

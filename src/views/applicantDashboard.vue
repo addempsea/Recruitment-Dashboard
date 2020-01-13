@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view">
     <div id="app">
       <applicantSidebar />
     </div>
@@ -7,50 +7,56 @@
     <div class="dashboard-head">
       <div class="head">
         <p>Dashboard</p>
-        <span
-          >Your Application is currently being review, you wil be notified if
-          successful</span
-        >
+        <span>
+          Your Application is currently being review, you wil be notified if
+          successful
+        </span>
       </div>
 
       <div class="time-status">
         <div class="time">
           <p>Date of Application</p>
-          <span> 09.09.19</span>
+          <span>09.09.19</span>
           <div class="horizontal"></div>
           <p class="small-text">4 days since applied</p>
         </div>
         <div class="app-status">
           <p>Application Status</p>
-          <span> Pending</span>
+          <span>Pending</span>
           <div class="app-status2"></div>
           <p class="small-text">We will get back to you</p>
         </div>
       </div>
 
-      <div class="assessment">
-        <div class="update">
+      <div class="assessment p-2">
+        <div class="update p-5">
           <p>Update</p>
           <div class="horizontal-line">
             <hr />
-            <br /><br /><br />
+            <br />
+            <br />
+            <br />
             <hr />
-            <br /><br /><br />
+            <br />
+            <br />
+            <br />
             <hr />
-            <br /><br /><br />
+            <br />
+            <br />
+            <br />
             <hr />
           </div>
         </div>
-        <div class="take-assessment">
+        <div class="take-assessment p-5">
           <p>Take Assessment</p>
           <div class="take-assessment-body">
             <p>
-              We have 4 days left until the next assessment <br />
-              Watch this space
+              We have 4 days left until the next assessment
+              <br />Watch this space
             </p>
-            <router-link to="/takeAssessment"
-              ><button>Take Assessment</button></router-link
-            >
+
+            <router-link :to="{name: 'takeAssessment'}"><button class="btn">Take Assessment</button></router-link>
+            <!-- <router-link :to="{name: 'register'}" class="btn btn-primary">Take Assessment</router-link> -->
           </div>
         </div>
       </div>
@@ -71,12 +77,16 @@ export default {
 </script>
 
 <style scoped>
-.dashboard-head {
+.view {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+/* .dashboard-head {
   margin-left: 292px;
   margin-top: 107px;
   margin-bottom: 86px;
   padding-left: 47px;
-}
+} */
 .head p {
   font-family: "Lato", sans-serif;
   font-style: normal;
@@ -161,9 +171,8 @@ export default {
 }
 
 .update {
-  width: 482px;
-  height: 453px;
-  border: 1px solid #ececf9;
+  
+  border: 2px solid #ececf9;
   box-sizing: border-box;
   border-radius: 4px;
 }
@@ -178,9 +187,8 @@ export default {
   margin-top: 25px;
 }
 .take-assessment {
-  width: 482px;
-  height: 453px;
-  border: 1px solid #ececf9;
+ 
+  border: 2px solid #ececf9;
   box-sizing: border-box;
   border-radius: 4px;
   margin-left: 80px;
@@ -221,6 +229,6 @@ button {
   margin-left: auto;
   margin-right: auto;
   display: block;
-   border: none;
+  border: none;
 }
 </style>

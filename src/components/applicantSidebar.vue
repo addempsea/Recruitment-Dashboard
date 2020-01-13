@@ -4,27 +4,70 @@
       <div class="profile">
         <img src="../assets/Ellipse.png" class="logo" />
       </div>
-      <h1 class="user-name">Jane Doe</h1>
-      <p class="user-email">doe@enyata.com</p>
+      <h1 class="user-name">{{getUser.fname + " " +getUser.lname}}</h1>
+      <p class="user-email">{{getUser.email}}</p>
     </div>
 
     <div class="sidebar-icon">
-      <div class="active">
-        <button><img src="../assets/dashboard.png" class="icon" />Dashboard</button>
+      <div class="container">
+        <button class="logout">
+          <i class="fa fa-dashboard" aria-hidden="true"></i> 
+          <span class="mx-3">Dashboard</span>
+        </button>
       </div>
-      <div>
-        <p><img src="../assets/assessment.png" class="icon" />Assessment</p>
+      <div class="container">
+       <button class="logout">
+          <i class="fa fa-file" aria-hidden="true"></i> 
+          <span class="mx-3">Assesment</span>
+        </button>
       </div>
-      <br />
-      <br />
-      <div>
-        <p><img src="../assets/Layer.png" class="icon" />Log Out</p>
+      
+      
+      <div class="container">
+        <button  @click="logut" class="logout">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> 
+          <span class="mx-3">Logout</span>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+  name: "sidebar",
+  data() {
+    return {
+      
+    }
+  },
+
+  computed: {
+    ...mapGetters(["getUser"])
+  },
+
+  methods: {
+    ...mapActions(["fetchProfile", "logout"]),
+    logut() {
+      this.logout()
+      this.$router.push({name: "login"})
+    }
+  },
+
+  mounted () {
+    this.fetchProfile()
+  }
+
+}
+</script>
+
 <style scoped>
+.logout {
+ background: #ffff;
+ border: none;
+}
+
 .sidebar {
   width: 292px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);

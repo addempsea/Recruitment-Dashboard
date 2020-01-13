@@ -4,7 +4,7 @@
       <div class="profile">
         <img src="../assets/Ellipse 2.png" class="logo" />
       </div>
-      <h1 class="user-name">Josh Doe</h1>
+      <h1 class="user-name">{{name}}</h1>
       <p class="user-email">j.doe@enyata.com</p>
     </div>
 
