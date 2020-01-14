@@ -1,56 +1,145 @@
 <template>
-  <div class="container my-5">
-    <div v-for="(question, index) in quiz" :key="index">
-      <div v-show="index === questionIndex">
-        <h6>{{question.question}}</h6>
-        <li v-for="(answer, index) in question.incorrect_answers" :key="index">
-          <input type="radio" :name="index" :value="answer" v-model="answerd"/>
-          <label class="mx-3">{{answer}}</label>
-           v-show="questionIndex === getQuiz.data.length"
-        </li>
+  <div class="container">
+    <div class="wrapper">
+      <div class="head">
+        <div>
+          <!-- <img src="../../assets/enyata-w-logo.svg" alt /> -->
+        </div>
+        <div>
+          <h1>enyata</h1>
+          <em>
+            <p>Admin Log In</p>
+          </em>
+        </div>
       </div>
-      
+
+      <div class="bottom">
+         <!-- <p class="alert__message">{{ adminLog.message }}</p> -->
+        <form @submit.prevent="adminRole" action="/login" method="post">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address</label>
+            <input type="email" name='email' class="form-control" id="exampleInputEmail1" v-model="adminLogin.email" />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name='psw' class="form-control" id="exampleInputPassword1" v-model="adminLogin.password" />
+            <i  class="fa fa-eye field-icon toggle-password"></i>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Sign In</button>
+
+          <router-link to="#">
+            <span>Forgot Password ?</span>
+          </router-link>
+        </form>
+      </div>
     </div>
-    <button v-if="questionIndex > 0" v-on:click="prev" class="mr-5">prev</button>
-    <button v-on:click="next">next</button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
+import $ from "jquery";
 export default {
-  name: "test",
+  name: "AdminLogin",
+  components: {},
   data() {
     return {
-      quiz: [],
-      questionIndex: 0,
-      answerd: "",
-      newans :[],
-    //  
+      adminLogin: {
+         email: "",
+        password: ""
+      }
     };
   },
-
-  async mounted() {
-    const response = await axios.get(
-      "https://opentdb.com/api.php?amount=10&category=21&difficulty=hard&type=multiple"
-    );
-    this.quiz = response.data.results;
+  computed:{
+    ...mapGetters(['adminLog'])
   },
-
-  methods: {
-    next: function() {
-        this.newans.push(this.answerd)
-      this.questionIndex++;
-    },
-
-    prev: function() {
-      this.questionIndex--;
-      this.newans.pop(this.answerd)
-    },
-
-    changed() {
-        this.newans.push(this.answerd)
+  methods:{
+    ...mapActions(['loginAdmin']),
+   adminRole() {
+      this.loginAdmin(this.adminLogin);
+    }
+  },
+  mounted(){
+    $(function(){
+  
+  $('.toggle-password').click(function(){
+       
+        if($(this).hasClass('fa-eye-slash')){
+           
+          $(this).removeClass('fa-eye-slash');
+          
+          $(this).addClass('fa-eye');
+          
+          $('#exampleInputPassword1').attr('type','text');
+            
+        }else{
+         
+          $(this).removeClass('fa-eye');
+          
+          $(this).addClass('fa-eye-slash');  
+          
+          $('#exampleInputPassword1').attr('type','password');
+        }
+    });
+});
+  },
+  watch: {
+    adminLog(val) {
+      if (val.type == "success") {
+        setTimeout(() => {
+          this.$router.push({ name: "AdminDashboard" });
+        }, 1000);
+      }
     }
   }
 };
 </script>
+
+<style scoped>
+.container {
+  /* background: url("../assets/Background-image.png"); */
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  color: white;
+  font-family: Lato;
+  display: flex;
+  align-items: center;
+}
+.wrapper {
+  width: 35%;
+  margin: 0 auto;
+}
+input {
+  background: #111e2b;
+  border: 1px solid white;
+  color: white;
+}
+.btn {
+  width: 100%;
+  background: white;
+  color: #111e2b;
+  border: none;
+}
+.head {
+  text-align: center;
+}
+span {
+  font-size: 0.7em;
+  float: right;
+  padding: 0.8em 0;
+  color: white;
+}
+.field-icon {
+  float: right;
+  margin-right:1em;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+  cursor:pointer;
+opacity: 0.4;
+color: #5ABEFD;
+}
+</style>

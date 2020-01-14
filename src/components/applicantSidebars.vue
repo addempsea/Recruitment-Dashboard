@@ -4,77 +4,63 @@
       <div class="profile">
         <img src="../assets/Ellipse.png" class="logo" />
       </div>
-      <h1 class="user-name">{{getProfile.fname + " " +getProfile.lname}}</h1>
-      <p class="user-email">{{getProfile.email}}</p>
+      <h1 class="user-name">Josh Doe</h1>
+      <p class="user-email">j.doe@enyata.com</p>
     </div>
 
     <div class="sidebar-icon">
-      <div class="container">
+      <div class="active">
         <router-link :to="{name: 'applicantDashboard'}">
           <button class="logout">
             <i class="fa fa-dashboard" aria-hidden="true"></i> 
             <span class="mx-3">Dashboard</span>
           </button>
         </router-link>
+        <!-- <i class="fa fa-dashboard"></i>
+        <span class="icon">
+          Dashboard
+        </span> -->
       </div>
-      <div class="container">
-        <router-link :to="{name: 'takeAssessment'}">
-          <button class="logout">
-            <i class="fa fa-file" aria-hidden="true"></i> 
-            <span class="mx-3">Assesment</span>
-          </button>
-        </router-link>
+      <div class="active">
+        <i class="fa fa-plus"></i>
+        <span class="icon">
+          Create Application
+        </span>
       </div>
-      
-      
-      <div class="container">
-        <button  @click="logut" class="logout">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> 
-          <span class="mx-3">Logout</span>
-        </button>
+      <div class="active">
+        <i class="fa fa-download"></i>
+        <span class="icon">
+          Application Entries
+        </span>
+      </div>
+      <div class="active">
+        <i class="fa fa-file"></i>
+        <span class="icon">
+          Compose Assessment
+        </span>
+      </div>
+      <div class="active">
+        <i class="fa fa-refresh"></i>
+        <span class="icon">
+          Assessment History
+        </span>
+      </div>
+      <div class="active">
+        <i class="fa fa-plus"></i>
+        <span class="icon">
+          Results
+        </span>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from "vuex";
-export default {
-  name: "sidebar",
-  data() {
-    return {
-      
-    }
-  },
 
-  computed: {
-    ...mapGetters(["getProfile"])
-  },
-
-  methods: {
-    ...mapActions(["fetchProfile", "logout"]),
-    logut() {
-      this.logout()
-      this.$router.push({name: "login"})
-    }
-  },
-
-  mounted () {
-    this.fetchProfile()
-  }
-
+<style  scoped>
+i{
+  margin-right: 7px;
+  font-size: 11px;
 }
-</script>
-
-<style scoped>
-a.router-link-exact-active {
-  color: #42b983;
-}
-.logout {
- background: #ffff;
- border: none;
-}
-
 .sidebar {
   width: 292px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
@@ -86,10 +72,10 @@ a.router-link-exact-active {
 }
 .applicant-image {
   width: 100%;
-  height: 255px;
+  /* height: 255px; */
   left: 0px;
   top: 0px;
-  background: #2b3c4e;
+  background: #5ABEFD;
   display: inline-block;
   text-align: center;
   padding-top: 50px;
@@ -107,7 +93,7 @@ a.router-link-exact-active {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color:#2B3C4E;
   margin-top: 20px;
 }
 .user-email {
@@ -117,32 +103,42 @@ a.router-link-exact-active {
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color:#2B3C4E;
 }
 .sidebar-icon {
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  margin-left: 40px;
 }
-.sidebar-icon > div {
+/* .sidebar-icon > div {
   height: 50px;
   width: 100%;
-}
+} */
 .icon {
   margin-right: 25px;
+  height: 12px;
+  text-align: left;
 }
-.sidebar-icon > div > p {
+/* .sidebar-icon > div > p {
   display: flex;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   color: #2b3c4e;
-  padding: 18px 35px 12px 35px;
+  padding: 0 35px;
   text-align: left;
-}
-.sidebar-icon > div.active > p {
-  font-weight: bold;
+  padding-top: 10px;
+
+} */
+.sidebar-icon > div.active > span {
   color: #2b3c4e;
-  border-left: 4px solid #31d283;
 }
+.active {
+  padding-top: 25px;
+  margin-bottom: 1px;
+}
+
+
+
 </style>

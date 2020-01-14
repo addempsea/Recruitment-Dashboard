@@ -8,12 +8,15 @@ export default new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
     user: localStorage.getItem('userP') || null,
+    admin: localStorage.getItem('admin') || null,
+
     response: {
       type: "",
       message: ""
     },
     profile: '',
-    quiz: []
+    quiz: [],
+    applications: []
   },
   getters: {
     loggedIn(state) {
@@ -23,7 +26,9 @@ export default new Vuex.Store({
     apiResponse: state => state.response,
     getUser: state => state.user,
     getProfile: state => state.profile,
-    getQuiz: state => state.quiz
+    getQuiz: state => state.quiz,
+    getAdmin: state => state.admin,
+    getApps: state => state.applications
   },
 
   mutations: {
@@ -47,6 +52,14 @@ export default new Vuex.Store({
       state.quiz = user
     },
 
+    setAdmin(state, user) {
+      state.admin = user
+    },
+
+    setApps(state, user) {
+      state.applications = user
+    },
+
     retrieveToken(state, token) {
       state.token = token
     },
@@ -57,6 +70,10 @@ export default new Vuex.Store({
 
     destroyUser(state) {
       state.user = null
+    },
+
+    destroyAdmin(state) {
+      state.admin = null
     }
 
   },
@@ -87,12 +104,11 @@ export default new Vuex.Store({
     async login({ commit }, userInfo) {
       try {
         const response = await axios.post('http://localhost:3000/api/user/login', userInfo);
-        
-
           let responseObject = {
             type: 'success',
             message: response.data.message
           }
+
           const token = response.data.token
           localStorage.setItem('access_token', token)
           commit('retrieveToken', token)
@@ -170,6 +186,98 @@ export default new Vuex.Store({
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         const response = await axios.post('http://localhost:3000/api/user/question/submit', userInfo);
+
+          let responseObject = {
+            type: 'success',
+            message: response.data.message
+          }
+
+          commit('setResponse', responseObject)
+          console.log(response.data);
+      } catch (error) {
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        console.log(error.response.data.message);
+        
+        commit('setResponse', responseObject)
+
+      }
+    },
+
+    async adminLogin({ commit }, userInfo) {
+      try {
+        const response = await axios.post('http://localhost:3000/api/admin/login', userInfo);
+
+          let responseObject = {
+            type: 'success',
+            message: response.data.message
+          }
+
+          const token = response.data.token
+          localStorage.setItem('admin', token)
+
+          commit('retrieveToken', token)
+          commit('setResponse', responseObject)
+          
+          console.log(response.data.data._id);
+          const user = await response.data.data._id
+          localStorage.setItem('admin', user)
+          commit('setAdmin',user)
+        
+      } catch (error) {
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        console.log(error.response.data.message);
+        commit('setResponse', responseObject)
+      }
+    },
+
+    async fetchApps({ commit }) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        var id = localStorage.getItem('admin')
+        const response = await axios.get(`http://localhost:3000/api/admin/application/${id}`);
+        // console.log(id);
+        // console.log(response);
+        commit('setApps', response.data.data)
+
+      } catch (error) {
+        commit('setProfile', error.response)
+      }
+    },
+
+    async createApp({ commit }, userInfo) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        const response = await axios.post('http://localhost:3000/api/admin/create', userInfo);
+
+          let responseObject = {
+            type: 'success',
+            message: response.data.message
+          }
+
+          commit('setResponse', responseObject)
+          console.log(response.data);
+      } catch (error) {
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        console.log(error.response.data.message);
+        
+        commit('setResponse', responseObject)
+
+      }
+    },
+
+    async createQstn({ commit }, userInfo) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        const response = await axios.post('http://localhost:3000/api/admin/question/create', userInfo);
 
           let responseObject = {
             type: 'success',

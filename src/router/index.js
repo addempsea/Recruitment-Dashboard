@@ -29,22 +29,22 @@ const routes = [
   },
   {
     path: '/applicantdashboard',
-    name:'applicantDashboard ',
+    name:'applicantDashboard',
     component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue')
   },
   {
     path: '/entries',
-    name:'entries ',
+    name:'entries',
     component: () => import(/* webpackChunkName: "entries" */ '../views/entries.vue')
   },
   {
     path: '/Create',
-    name:'Create ',
+    name:'Create',
     component: () => import(/* webpackChunkName: "Create" */ '../views/Create.vue')
   },
   {
     path: '/Assessment',
-    name:'Assessment ',
+    name:'Assessment',
     component: () => import(/* webpackChunkName: "Assessment" */ '../components/Assessment.vue')
   },
   {
@@ -54,12 +54,12 @@ const routes = [
   },
   {
     path: '/ComposePage',
-    name:'ComposePage ',
+    name:'ComposePage',
     component: () => import(/* webpackChunkName: "ComposePage" */ '../components/ComposePage.vue')
   },
   {
     path: '/adminsidebar',
-    name:'adminsidebar ',
+    name:'adminsidebar',
     component: () => import(/* webpackChunkName: "adminsidebar" */ '../components/AdminSidebar.vue')
   },
   {
@@ -69,7 +69,7 @@ const routes = [
   },
   {
     path: '/composeAssessment',
-    name:'composeAssessment ',
+    name:'composeAssessment',
     component: () => import(/* webpackChunkName: "composeAssessment" */ '../views/composeAssessment.vue')
   },
   {
@@ -79,7 +79,7 @@ const routes = [
   },
   {
     path: '/successfulPage',
-    name:'successfulPage ',
+    name:'successfulPage',
     component: () => import(/* webpackChunkName: "successfulPage" */ '../views/successfulPage.vue')
   },
   {
@@ -89,12 +89,12 @@ const routes = [
   },
   {
     path: '/QuestionPage',
-    name:'QuestionPage ',
+    name:'QuestionPage',
     component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
   },
   {
     path: '/Success',
-    name:'Success ',
+    name:'success',
     component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
   },
   {

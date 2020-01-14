@@ -97,6 +97,7 @@ export default {
         this.user.questionId.push(this.getQuiz.data[i]._id);
       }
       this.answers(this.user);
+      this.$router.push({name: "success"})
     }
   }
 };

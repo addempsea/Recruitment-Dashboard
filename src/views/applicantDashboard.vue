@@ -56,7 +56,7 @@
             </p>
 
             <router-link :to="{name: 'takeAssessment'}"><button class="btn">Take Assessment</button></router-link>
-            <!-- <router-link :to="{name: 'register'}" class="btn btn-primary">Take Assessment</router-link> -->
+            
           </div>
         </div>
       </div>
