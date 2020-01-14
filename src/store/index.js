@@ -12,7 +12,8 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
-    profile: []
+    profile: '',
+    quiz: []
   },
   getters: {
     loggedIn(state) {
@@ -21,7 +22,8 @@ export default new Vuex.Store({
 
     apiResponse: state => state.response,
     getUser: state => state.user,
-    getProfile: state => state.profile
+    getProfile: state => state.profile,
+    getQuiz: state => state.quiz
   },
 
   mutations: {
@@ -38,7 +40,11 @@ export default new Vuex.Store({
     },
 
     setProfile(state, user) {
-      state.user = user
+      state.profile = user
+    },
+
+    setQuiz(state, user) {
+      state.quiz = user
     },
 
     retrieveToken(state, token) {
@@ -81,7 +87,7 @@ export default new Vuex.Store({
     async login({ commit }, userInfo) {
       try {
         const response = await axios.post('http://localhost:3000/api/user/login', userInfo);
-        if (response.status == 200) {
+        
 
           let responseObject = {
             type: 'success',
@@ -96,7 +102,7 @@ export default new Vuex.Store({
           const user = await response.data.data._id
           localStorage.setItem('userP', user)
           commit('setUser',user)
-        }
+        
       } catch (error) {
         let responseObject = {
           type: 'failed',
@@ -137,16 +143,50 @@ export default new Vuex.Store({
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         var id = localStorage.getItem('userP')
         const response = await axios.get(`http://localhost:3000/api/user/${id}`);
-        console.log(id);
-        console.log(response);
-        
-        
-       
-
+        // console.log(id);
+        // console.log(response);
         commit('setProfile', response.data.data)
 
       } catch (error) {
         commit('setProfile', error.response)
+      }
+    },
+
+    async fetchQuiz({commit}) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        const response = await axios.get(
+          `http://localhost:3000/api/admin/questions`
+        );
+
+        commit('setQuiz', response.data)
+        
+      } catch (error) {
+        commit('setQuiz', error.response)
+      }
+    },
+
+    async answers({ commit }, userInfo) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        const response = await axios.post('http://localhost:3000/api/user/question/submit', userInfo);
+
+          let responseObject = {
+            type: 'success',
+            message: response.data.message
+          }
+
+          commit('setResponse', responseObject)
+          console.log(response.data);
+      } catch (error) {
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        console.log(error.response.data.message);
+        
+        commit('setResponse', responseObject)
+
       }
     },
 

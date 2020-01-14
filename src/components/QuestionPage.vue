@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="container">
+    <div class="containers">
       <div class="container-side">
-        <div class="p-tag"><p>Take Assessment</p></div>
+        <div class="p-tag">
+          <p>Take Assessment</p>
+        </div>
         <p class="dot-text">
           Click the submit button to submit assessment, you can go back at any
           time to edit your answers.
@@ -12,45 +14,99 @@
         <p>Timer</p>
         <div class="span">
           <div>
-            <span>00<span class="minute">min</span></span>
+            <span>
+              00
+              <span class="minute">min</span>
+            </span>
           </div>
           <div>
-            <span class="seconds">010<span class="minute">sec</span></span>
+            <span class="seconds">
+              010
+              <span class="minute">sec</span>
+            </span>
           </div>
         </div>
       </div>
     </div>
-    <div class="question-page">
-      <div>
-        <h6>Question 1</h6>
-      </div>
-      <div>
-        <h2>What is the purpose of HDR technology?</h2>
-      </div>
-      <div>
-        <ul class="list">
-          <li>A. To reduce the file size of images and videos.</li>
-          <li>B. To speed up 3D rendering performance.</li>
-          <li class="correct-answer">
-            C. To support higher video resolutions.
-          </li>
-          <li>D. To display more colors in images and videos</li>
-        </ul>
+    <div class="container" v-for="(question, index) in getQuiz.data" :key="index">
+      <div v-show="index === questionIndex">
+      
+          <h6 class="text-center">Question {{+ " " + index + 1}}</h6>
+          <h2 class="text-center">{{question.question}}</h2>
+         <div class="row text-center">
+            <div v-for="(answer, index) in question.options" :key="index" class="col-6">
+              <input type="radio" :name="index" :value="answer" v-model="answerd"/>
+              <label class="mx-3">{{answer}}</label>
+            </div>
+            
+         </div>
+          
       </div>
     </div>
-    <div>
+
+    <h3 class="my-3" v-show="questionIndex === getQuiz.data.length">End of questions, press previous to edit your answers and click on finish to submit.</h3>
+
       <div class="two-buttons">
-        <button class="first-button">Previous</button>
-        <button class="second-button">Next</button>
+        <button v-if="questionIndex > 0" @click="prev" class="second-button">prev</button>
+        <button class="btn btn-outline-success my-5 px-5 py-3" @click="submitQuiz" v-show="questionIndex === getQuiz.data.length">Finish</button>
+        <button @click="next" class="second-button" v-if="questionIndex <= getQuiz.data.length - 1">next</button>
       </div>
-      <button class="last-button">Finish</button>
-    </div>
   </div>
 </template>
+
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+  name: "question",
+  data() {
+    return {
+      quiz: [],
+      questionIndex: 0,
+      answerd: "",
+      user: {
+          answer: [],
+          questionId: []
+      }
+    };
+  },
+
+  computed: {
+    ...mapGetters(["getQuiz"])
+  },
+
+  mounted() {
+    this.fetchQuiz();
+  },
+
+  methods: {
+    ...mapActions(["fetchQuiz", "answers"]),
+
+    next() {
+      this.user.answer.unshift(this.answerd);
+      this.questionIndex++;
+    },
+
+    prev() {
+      this.questionIndex--;
+      this.user.answer.shift(this.answerd);
+    },
+
+    submitQuiz () {
+      for (let i = 0; i < this.getQuiz.data.length; i++) {
+        this.user.questionId.push(this.getQuiz.data[i]._id);
+      }
+      this.answers(this.user);
+    }
+  }
+};
+</script>
+
+
+
 <style scoped>
-.right {
-  margin-bottom: 150px;
-  margin-left: 150px;
+li {
+  list-style: none;
 }
 span {
   font-family: Lato;
@@ -71,19 +127,17 @@ span {
   font-size: 12px;
   line-height: 14px;
 }
-.container {
+.containers {
   display: flex;
   justify-content: space-between;
 }
 .last-button {
-  margin-left: 450px;
-  margin-top: 60px;
   background: #cecece;
   border-radius: 4px;
   width: 205px;
   height: 41px;
   color: white;
-   border: none;
+  border: none;
 }
 .second-button {
   background: #2b3c4e;
@@ -91,7 +145,7 @@ span {
   color: white;
   width: 125px;
   height: 41px;
-   border: none;
+  border: none;
 }
 .first-button {
   background: #2b3c4e;
@@ -99,13 +153,12 @@ span {
   color: white;
   width: 125px;
   height: 41px;
-   border: none;
+  border: none;
 }
 .two-buttons {
   display: flex;
-  margin-left: 0px;
-  margin-top: 50px;
-  justify-content: space-around;
+  justify-content: space-between;
+  /* align-items: center; */
 }
 
 .dot-text {
@@ -126,7 +179,7 @@ span {
   line-height: 3.333em;
   padding: 0 10px 0 20px;
   text-align: left;
-  margin-left: 330px;
+
   font-family: Lato;
   font-style: italic;
   font-weight: 500;
@@ -142,11 +195,6 @@ h6 {
   color: #2b3c4e;
 }
 
-.correct-answer {
-  list-style-image: url("../assets/square.png");
-  background: #31d283;
-  width: 400px;
-}
 h2 {
   font-family: Lato;
   font-style: italic;
@@ -163,34 +211,20 @@ h2 {
   font-size: 16px;
   color: #2b3c4e;
 }
-/* h2 {
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    text-align: left;
-    margin-right: 100px;
-    line-height: 52px;
-    color: #4F4F4F;
-} */
+
 .right h2 {
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   color: #4f4f4f;
-  margin-top: 0px;
-  line-height: 17px;
-  margin-top: 40px;
 }
 .p-tag {
   font-family: Lato;
   font-style: normal;
-  /* font-weight: 100; */
   font-size: 30px;
   line-height: 52px;
   letter-spacing: -0.02em;
   color: #2b3c4e;
-  margin-right: 300px;
 }
 </style>

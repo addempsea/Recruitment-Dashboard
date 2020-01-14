@@ -4,8 +4,8 @@
       <div class="profile">
         <img src="../assets/Ellipse.png" class="logo" />
       </div>
-      <h1 class="user-name">{{getUser.fname + " " +getUser.lname}}</h1>
-      <p class="user-email">{{getUser.email}}</p>
+      <h1 class="user-name">{{getProfile.fname + " " +getProfile.lname}}</h1>
+      <p class="user-email">{{getProfile.email}}</p>
     </div>
 
     <div class="sidebar-icon">
@@ -44,7 +44,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getUser"])
+    ...mapGetters(["getProfile"])
   },
 
   methods: {

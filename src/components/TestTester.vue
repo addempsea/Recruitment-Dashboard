@@ -6,6 +6,7 @@
         <li v-for="(answer, index) in question.incorrect_answers" :key="index">
           <input type="radio" :name="index" :value="answer" v-model="answerd"/>
           <label class="mx-3">{{answer}}</label>
+           v-show="questionIndex === getQuiz.data.length"
         </li>
       </div>
       
@@ -25,7 +26,7 @@ export default {
       questionIndex: 0,
       answerd: "",
       newans :[],
-    //   userResponses: Array(this.quiz.question.length).fill(false)
+    //  
     };
   },
 
