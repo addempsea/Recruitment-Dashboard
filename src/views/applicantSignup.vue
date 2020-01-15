@@ -214,8 +214,8 @@ form {
 }
 
 .btns {
-  border: 2px dashed gray;
-  color: gray;
+  border: 2px dashed #2B3C4E;
+  color: #2B3C4E;
   background-color: white;
   padding: 8px 20px;
   border-radius: 8px;
@@ -231,7 +231,7 @@ form {
   opacity: 0;
 }
 label {
-  font-family: "Lato", sans-serif;
+  font-family: Lato, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

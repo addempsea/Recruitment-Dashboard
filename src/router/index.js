@@ -88,12 +88,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "applicantSignup" */ '../views/applicantSignup.vue')
   },
   {
-    path: '/QuestionPage',
+    path: '/suestionPage',
     name:'QuestionPage',
     component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
   },
   {
-    path: '/Success',
+    path: '/success',
     name:'success',
     component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
   },
@@ -101,6 +101,42 @@ const routes = [
     path: '/test',
     name:'test',
     component: () => import(/* webpackChunkName: "Success" */ '../components/TestTester.vue')
+  },
+
+  {
+    path: '/admindashboard',
+    name:'admindashboard',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/adminDashboard.vue')
+  },
+
+  {
+    path: '/adminapplication',
+    name:'adminapplication',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateApplication.vue')
+  },
+
+  {
+    path: '/adminquestion',
+    name:'adminquestion',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateQstn.vue')
+  },
+
+  {
+    path: '/adminlogin',
+    name:'adminlogin',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/AdminLogin.vue')
+  },
+
+  {
+    path: '/adminentries',
+    name:'adminentries',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/EntriesTable.vue')
+  },
+
+  {
+    path: '/adminresult',
+    name:'adminresult',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/ResultsTable.vue')
   },
 
 ]

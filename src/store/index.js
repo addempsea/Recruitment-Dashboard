@@ -239,10 +239,8 @@ export default new Vuex.Store({
     async fetchApps({ commit }) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
-        var id = localStorage.getItem('admin')
-        const response = await axios.get(`http://localhost:3000/api/admin/application/${id}`);
-        // console.log(id);
-        // console.log(response);
+        
+        const response = await axios.get(`http://localhost:3000/api/admin/application/`);
         commit('setApps', response.data.data)
 
       } catch (error) {

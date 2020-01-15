@@ -61,10 +61,7 @@ h3 {
   font-weight: 300;
   font-size: 43.5555px;
   line-height: 52px;
-  /* identical to box height */
-
   letter-spacing: -0.02em;
-
   color: #2b3c4e;
 }
 
@@ -74,7 +71,6 @@ h6 {
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-
   color: #4f4f4f;
 }
 

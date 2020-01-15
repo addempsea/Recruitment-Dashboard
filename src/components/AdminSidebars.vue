@@ -9,54 +9,62 @@
     </div>
 
     <div class="sidebar-icon">
-      <div class="active">
-        <router-link :to="{name: 'applicantDashboard'}">
-          <button class="logout">
+      <div class="my-3">
+        <router-link :to="{name: 'admindashboard'}" class="tests">
+          
             <i class="fa fa-dashboard" aria-hidden="true"></i> 
             <span class="mx-3">Dashboard</span>
-          </button>
+        
         </router-link>
-        <!-- <i class="fa fa-dashboard"></i>
-        <span class="icon">
-          Dashboard
-        </span> -->
       </div>
       <div class="active">
-        <i class="fa fa-plus"></i>
-        <span class="icon">
-          Create Application
-        </span>
+        
+         <router-link :to="{name: 'adminapplication'}" class="tests">
+            <i class="fa fa-plus" aria-hidden="true"></i> 
+            <span class="mx-3">Create Application</span>
+        </router-link>
+      </div>
+      <div class="active my-3">
+       
+        <router-link :to="{name: 'adminentries'}" class="tests">
+            <i class="fa fa-download" aria-hidden="true"></i> 
+            <span class="mx-3">Application Entries</span>
+        </router-link>
       </div>
       <div class="active">
-        <i class="fa fa-download"></i>
-        <span class="icon">
-          Application Entries
-        </span>
+        <router-link :to="{name: 'adminquestion'}" class="tests">
+            <i class="fa fa-file" aria-hidden="true"></i> 
+            <span class="mx-3">Assessment</span>
+        </router-link>
+      </div>
+      <div class="active my-3">
+        <router-link :to="{name: 'applicantDashboard'}" class="tests">
+            <i class="fa fa-refresh" aria-hidden="true"></i> 
+            <span class="mx-3">Assessment History</span>
+        </router-link>
       </div>
       <div class="active">
-        <i class="fa fa-file"></i>
-        <span class="icon">
-          Compose Assessment
-        </span>
-      </div>
-      <div class="active">
-        <i class="fa fa-refresh"></i>
-        <span class="icon">
-          Assessment History
-        </span>
-      </div>
-      <div class="active">
-        <i class="fa fa-plus"></i>
-        <span class="icon">
-          Results
-        </span>
+         <router-link :to="{name: 'adminresults'}" class="tests">
+            <i class="fa fa-plus" aria-hidden="true"></i> 
+            <span class="mx-3">Results</span>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  name: "adminbar"
+}
+</script>
+
 
 <style  scoped>
+
+.tests {
+  color: #212529;
+}
 i{
   margin-right: 7px;
   font-size: 11px;
@@ -106,39 +114,13 @@ i{
   color:#2B3C4E;
 }
 .sidebar-icon {
-  /* padding-top: 50px; */
   margin-left: 40px;
 }
-/* .sidebar-icon > div {
-  height: 50px;
-  width: 100%;
-} */
+
 .icon {
   margin-right: 25px;
   height: 12px;
   text-align: left;
 }
-/* .sidebar-icon > div > p {
-  display: flex;
-  font-family: "Lato", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  color: #2b3c4e;
-  padding: 0 35px;
-  text-align: left;
-  padding-top: 10px;
-
-} */
-.sidebar-icon > div.active > span {
-  color: #2b3c4e;
-}
-.active {
-  padding-top: 25px;
-  margin-bottom: 1px;
-}
-
-
 
 </style>

@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="container" v-for="(question, index) in getQuiz.data" :key="index">
+    <div class="container" v-for="(question, index) in getQuiz.sorted" :key="index">
       <div v-show="index === questionIndex">
       
           <h6 class="text-center">Question {{+ " " + index + 1}}</h6>
@@ -44,12 +44,12 @@
       </div>
     </div>
 
-    <h3 class="my-3" v-show="questionIndex === getQuiz.data.length">End of questions, press previous to edit your answers and click on finish to submit.</h3>
+    <h3 class="my-3" v-show="questionIndex === getQuiz.sorted.length">End of questions, press previous to edit your answers and click on finish to submit.</h3>
 
       <div class="two-buttons">
         <button v-if="questionIndex > 0" @click="prev" class="second-button">prev</button>
-        <button class="btn btn-outline-success my-5 px-5 py-3" @click="submitQuiz" v-show="questionIndex === getQuiz.data.length">Finish</button>
-        <button @click="next" class="second-button" v-if="questionIndex <= getQuiz.data.length - 1">next</button>
+        <button class="btn btn-outline-success my-5 px-5 py-3" @click="submitQuiz" v-show="questionIndex === getQuiz.sorted.length">Finish</button>
+        <button @click="next" class="second-button" v-if="questionIndex <= getQuiz.sorted.length - 1">next</button>
       </div>
   </div>
 </template>
