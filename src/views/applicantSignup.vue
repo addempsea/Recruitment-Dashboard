@@ -149,9 +149,6 @@ export default {
   justify-content: center;
 }
 
-form {
-  /* padding: 100px; */
-}
 .former {
   border: 2px dashed #2b3c4e;
   width: 211px;
@@ -185,27 +182,18 @@ form {
   color: #2b3c4e;
 }
 .form-wrapper {
-  /* width: 90%; */
-  /* max-width: 963px;
-  height: 800px; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* margin-top: 45px;
-  margin-bottom: 171px; */
-  /* display: block; */
+
   background: #ffffff;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 }
 
 .form {
-  width: 90%;
-  /* max-width: 830px; */
-  /* height: 469px; */
+  width: 90%;  
   margin-left: auto;
   margin-right: auto;
   display: block;
-  /* padding-top: 51px; */
+
 }
 .upload-btn-wrapper {
   position: relative;

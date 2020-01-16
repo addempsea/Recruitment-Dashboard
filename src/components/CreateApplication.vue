@@ -3,22 +3,23 @@
     <div class="col-3">
       <AdminSidebars></AdminSidebars>
     </div>
-    <div class="container col-9">
+    <div class="container col-8">
       <h2 class="my-5">Create Application</h2>
+      <p>{{apiResponse.message}}</p>
       <div>
-        <form action>
+        <form enctype="multipart/form-data" @submit.prevent="submitForm">
           <div class="row">
             <div class="fileup col">
               <div class="upload-btn-wrapper">
                 <button class="btns">
                   <strong>+</strong> choose file
                 </button>
-                <input type="file" name="file" ref="file" />
+                <input type="file" name="file" ref="file" @change="handleFileUpload"/>
               </div>
             </div>
             <div class="col">
               <label>Link</label>
-              <input type="text" class="form-control"  />
+              <input type="text" class="form-control"  v-model="link"/>
             </div>
            
           </div>
@@ -26,19 +27,19 @@
           <div class="row my-4">
             <div class="col">
               <label>Application closure date</label>
-              <input type="date" class="form-control" />
+              <input type="date" class="form-control" v-model="closing_date"/>
             </div>
             <div class="col">
               <label>Batch ID</label>
-              <input type="text" class="form-control"  />
+              <input type="text" class="form-control"  v-model="batch_id"/>
             </div>
           </div>
           <div class="form-group my-3">
             <label for>Instructions</label>
-            <textarea class="form-control" name id rows="4"></textarea>
+            <textarea class="form-control" name id rows="4" v-model="instructions"></textarea>
           </div>
           <div class="text-center">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
           </div>
           
         </form>
@@ -49,15 +50,77 @@
 
 <script>
 import AdminSidebars from "../components/AdminSidebars";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "applicationAdmin",
+  data() {
+    return {
+      file: '',
+      batch_id: '',
+      link: '',
+      closing_date: "",
+      instructions: ""
+    }
+  },
   components: {
     AdminSidebars
-  }
+  },
+  computed: {
+    ...mapGetters(["apiResponse"]),
+
+    isValid() {
+      if (
+        this.link == "" ||
+        this.file == "" ||
+        this.batch_id == "" ||
+        this.closing_date == "" ||
+        this.instructions == ""
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(["createApp"]),
+
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+
+    submitForm() {
+      if (this.isValid) {
+        let formData = new FormData();
+        formData.append("file", this.file);
+        formData.append("batch_id", this.batch_id);
+        formData.append("link", this.link);
+        formData.append("closing_date", this.closing_date);
+        formData.append("instructions", this.instructions);
+        this.createApp(formData);
+        this.file = '';
+        this.batch_id =  '';
+        this.link =  '';
+        this.closing_date = "";
+        this.instructions = "";
+        
+      } else {
+        alert("All fields are required");
+      }
+    }
+    
+  },
+
 };
 </script>
 
-<style scoped> 
+<style scoped>
+.fileup {
+  display: flex;
+  justify-content: center;
+}
+
 h2 {
   font-family: Lato;
   font-style: normal;
@@ -79,9 +142,9 @@ h2 {
   box-sizing: border-box;
   color: #2b3c4e;
   background-color: white;
-  padding: 46px 185px;
+  padding: 46px 180px;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
   /* font-weight: bold; */
 }

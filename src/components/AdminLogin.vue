@@ -9,21 +9,18 @@
         <h3>enyata</h3>
         <h6>Admin Log In</h6>
       </div>
+      <p class="api_res text-center">{{ apiResponse.message }}</p>
       <div class="form-gro my-5">
-        <form class="">
+        <form @submit.prevent="loging">
           <div class="form-group">
             <label for>Email Address</label>
-            <input
-              type="email"
-              class="form-control"
-              name
-            />
+            <input type="email" class="form-control" name="email" v-model="user.email" />
           </div>
           <div class="form-group">
             <label for>Password</label>
-            <input type="password" class="form-control" name="password" id placeholder />
+            <input type="password" class="form-control" name="password" v-model="user.password" />
           </div>
-          <button type="button" class="btn btn-primary">Sign in</button>
+          <button type="button" class="btn btn-primary" @click="loging">Sign in</button>
           <div class="account mb-4">
             <router-link to="#" class="password">Forgot password?</router-link>
           </div>
@@ -34,15 +31,61 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "home",
-  components: {}
+  name: "adminlogin",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: ""
+      }
+    };
+  },
+
+  computed: {
+    ...mapGetters(["apiResponse"]),
+    isValid() {
+      if (this.user.email == "" || this.user.password == "") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(["adminLogin"]),
+
+    loging() {
+      if (this.isValid) {
+        this.adminLogin(this.user);
+        console.log(this.apiResponse);
+      } else {
+        alert("All fields are required");
+        
+      }
+    }
+  },
+
+  watch: {
+    apiResponse(val) {
+      if (val.type == "success") {
+        
+        setTimeout(() => {
+          this.$router.push({ name: "admindashboard" });
+          val.message = ""
+        }, 2000);
+      } 
+    }
+  }
 };
 </script>
 
 <style scoped>
-
+.api_res {
+    color: red;
+}
 .image {
   display: flex;
   justify-content: center;
@@ -66,7 +109,6 @@ h3 {
   font-weight: bold;
   color: white;
 }
-
 
 h6 {
   font-size: 20px;
@@ -92,7 +134,6 @@ button {
   margin: 0 auto;
 }
 input {
-  
   border-radius: 4px;
   background: #122a3a;
 }

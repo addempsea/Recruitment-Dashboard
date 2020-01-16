@@ -216,7 +216,7 @@ export default new Vuex.Store({
           }
 
           const token = response.data.token
-          localStorage.setItem('admin', token)
+          localStorage.setItem('access_token', token)
 
           commit('retrieveToken', token)
           commit('setResponse', responseObject)
@@ -236,11 +236,25 @@ export default new Vuex.Store({
       }
     },
 
+    async fetchAdminProfile({ commit }) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        var id = localStorage.getItem('admin')
+        const response = await axios.get(`http://localhost:3000/api/admin/${id}`);
+        // console.log(id);
+        // console.log(response);
+        commit('setProfile', response.data)
+
+      } catch (error) {
+        commit('setProfile', error.response)
+      }
+    },
+
     async fetchApps({ commit }) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         
-        const response = await axios.get(`http://localhost:3000/api/admin/application/`);
+        const response = await axios.get(`http://localhost:3000/api/applications`);
         commit('setApps', response.data.data)
 
       } catch (error) {

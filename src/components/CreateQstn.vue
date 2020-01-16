@@ -6,21 +6,22 @@
     <div class="container col-8">
       <h2 class="my-5">Compose Assesment</h2>
       <div>
-        <form action>
+        <p class="text-center bg-success">{{apiResponse.message}}</p>
+        <form enctype="multipart/form-data" @submit.prevent="submitForm">
           <div class="row">
             <div class="fileup">
               <div class="upload-btn-wrapper">
                 <button class="btns">
                   <strong>+</strong> choose file
                 </button>
-                <input type="file" name="file" ref="file" />
+                <input type="file" name="file" ref="file" @change="handleFileUpload"/>
               </div>
             </div>
             <div class="input-group mb-3 col">
               <div class="">
                 <label class="input-group-text" for="inputGroupSelect01">Answer</label>
               </div>
-              <select class="custom-select" id="inputGroupSelect01">
+              <select class="custom-select" id="inputGroupSelect01" v-model="correctAns">
                 <option selected>Choose...</option>
                 <option value= 0>option A</option>
                 <option value= 1>option B</option>
@@ -32,30 +33,30 @@
           
           <div class="form-group my-3">
             <label for>Question</label>
-            <textarea class="form-control" name id rows="4"></textarea>
+            <textarea class="form-control" name id rows="4" v-model="question"></textarea>
           </div>
           <div class="row my-4">
             <div class="col">
               <label>Option A</label>
-              <input type="text" class="form-control"  />
+              <input type="text" class="form-control"  v-model="options[0]"/>
             </div>
             <div class="col">
               <label>Option B</label>
-              <input type="text" class="form-control"  />
+              <input type="text" class="form-control" v-model="options[1]" />
             </div>
           </div>
           <div class="row mb-4">
             <div class="col">
               <label>Option C</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" v-model="options[2]"/>
             </div>
             <div class="col">
               <label>Option D</label>
-              <input type="text" class="form-control"  />
+              <input type="text" class="form-control" v-model="options[3]" />
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-primary">Add question</button>
+            <button class="btn btn-primary" type="submit">Add question</button>
           </div>
           
         </form>
@@ -66,12 +67,74 @@
 
 <script>
 import AdminSidebars from "../components/AdminSidebars";
-// @ is an alias to /src
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "adminQstn",
   components: {
    AdminSidebars
+  },
+
+  data() {
+    return {
+      file: '',
+      correctAns: '',
+      options: [],
+      question: ''
+    }
+  },
+
+  computed: {
+    ...mapGetters(["apiResponse"]),
+
+    isValid() {
+      if (
+        this.correctAns == "" ||
+        this.file == "" ||
+        this.question == "" ||
+        this.options == ""
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(['createQstn']),
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+
+    submitForm() {
+      if (this.isValid) {
+        let formData = new FormData();
+        formData.append("file", this.file);
+        formData.append("question", this.question);
+        formData.append("correctAns", this.correctAns);
+        
+        for (let i = 0; i < this.options.length; i++) {
+          let option = this.options[i]
+         formData.append("options", option); 
+        }
+
+        console.log(formData);
+        this.createQstn(formData);
+      } else {
+        alert("All fields are required");
+      }
+    }
+  },
+
+  watch: {
+    apiResponse(val) {
+      if (val.type == "success") {
+        setTimeout(() => {
+          val.message = " "
+        }, 3000);
+      }
+    }
   }
 };
 </script>

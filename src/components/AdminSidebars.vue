@@ -4,8 +4,8 @@
       <div class="profile">
         <img src="../assets/Ellipse.png" class="logo" />
       </div>
-      <h1 class="user-name">Josh Doe</h1>
-      <p class="user-email">j.doe@enyata.com</p>
+      <h1 class="user-name">{{getProfile.data.fname + " " + getProfile.data.lname}}</h1>
+      <p class="user-email">{{getProfile.data.email}}</p>
     </div>
 
     <div class="sidebar-icon">
@@ -44,7 +44,7 @@
         </router-link>
       </div>
       <div class="active">
-         <router-link :to="{name: 'adminresults'}" class="tests">
+         <router-link :to="{name: 'adminresult'}" class="tests">
             <i class="fa fa-plus" aria-hidden="true"></i> 
             <span class="mx-3">Results</span>
         </router-link>
@@ -54,8 +54,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "adminbar"
+  name: "adminbar",
+  computed: {
+    ...mapGetters(["getProfile"])
+  },
+
+  methods: {
+    ...mapActions(["fetchAdminProfile"]),
+    
+  },
+
+  created () {
+    this.fetchAdminProfile()
+  }
+
 }
 </script>
 

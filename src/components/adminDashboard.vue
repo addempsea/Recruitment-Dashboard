@@ -12,16 +12,16 @@
       <div class="date_section">
         <div class="date">
           <p>Current Application</p>
-          <span class="number">233</span>
+          <span class="number">{{getProfile.count}}</span>
           <div class="horizontal"></div>
           <div class>
-            <p class>Academy 2.0</p>
+            <p class>Academy 1.0</p>
           </div>
         </div>
 
         <div class="t_app">
           <p>Total Application</p>
-          <span class="number">4253</span>
+          <span class="number">{{getProfile.count}}</span>
           <div class="horizontal2"></div>
           <div class>
             <p class>All entries so far</p>
@@ -30,7 +30,7 @@
 
         <div class="academy">
           <p>Academy's</p>
-          <span class="number">4</span>
+          <span class="number">1</span>
           <div class="horizontal3"></div>
           <div class>
             <p class>So far</p>
@@ -41,7 +41,7 @@
       <div class="row">
         <div class="col">
           <h4 class="heading">History</h4>
-          <p class="small-heading">Last Update 18.24.22/02/19</p>
+          <p class="small-heading">Last Update: 18.24.22/02/19</p>
           <div>
             <table class="table table-borderless">
               <thead>
@@ -82,7 +82,10 @@
               Create test question for an incoming academy
               student
             </p>
-            <button>Create Assessment</button>
+            <router-link :to="{name: 'adminquestion'}" class="tests">
+              <button>Create Assessment</button>
+            </router-link>
+            
           </div>
         </div>
       </div>
@@ -92,12 +95,25 @@
 
 <script>
 import applicantSidebars from "../components/AdminSidebars";
-// @ is an alias to /src
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "adminDashboard",
   components: {
     applicantSidebars
+  },
+
+  computed: {
+    ...mapGetters(["getProfile"])
+  },
+
+  methods: {
+    ...mapActions(["fetchAdminProfile"]),
+    
+  },
+
+  created () {
+    this.fetchAdminProfile()
   }
 };
 </script>
