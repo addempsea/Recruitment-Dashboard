@@ -6,6 +6,7 @@
       <h6>Applicant Log In</h6>
     </div>
     <div>
+      <p class="text-center text-danger">{{apiResponse.message}}</p>
       <form class="input-form" @submit.prevent="loging">
         <div class="form-item">
           <label for="name">Email Address</label> <br>
@@ -70,6 +71,7 @@ export default {
       if (val.type == "success") {
         setTimeout(() => {
           this.$router.push({ name: "applicantSignup" });
+          val.message = ""
         }, 3000);
       }
     }

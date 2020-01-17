@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form-container-head">
+    <div class="form-container-head mt-3">
       <img src="../assets/enyata-logo.png" alt="enyata" class="enyata-logo" />
       <h3>enyata</h3>
       <p>Applicant Form</p>
@@ -13,7 +13,7 @@
             <input type="file" name="file" ref="file" @change="handleFileUpload" />
           </div>
         </div>
-
+        <p class="text-danger text-center my-3"> {{apiResponse.message || message}} </p>
         <div class="row mt-3">
           <div class="col">
             <label>First Name</label>
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary mt-3" type="submit">Submit</button>
+        <button class="btn btn-primary mt-3 p-2 col-3" type="submit">Submit</button>
       </form>
     </div>
   </div>
@@ -78,7 +78,8 @@ export default {
       dob: "",
       address: "",
       course: "",
-      university: ""
+      university: "",
+      message: ""
     };
   },
 
@@ -108,6 +109,16 @@ export default {
 
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
+      const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+      if(!allowedTypes.includes(this.file.type)){
+        this.message = "Filetype is wrong!!"
+      }
+      else if(this.file.size>500000){
+        this.message = 'Too large, max size allowed is 500kb'
+      } else {
+        this.message = ""
+      }
+      
     },
 
     submitForm() {
@@ -124,6 +135,7 @@ export default {
         formData.append("university", this.university);
         console.log(formData);
         this.application(formData);
+        
       } else {
         alert("All fields are required");
       }
@@ -134,9 +146,8 @@ export default {
     apiResponse(val) {
       if (val.type == "success") {
         setTimeout(() => {
-          this.$router.push({ name: "applicantDashboard ",
-          params: {id: this.getUser} });
-        }, 3000);
+          this.$router.push({ name: "applicantDashboard"});
+        }, 2000);
       }
     }
   }

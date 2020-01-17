@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container my-5">
       <div class="container-side">
         <div class="p-tag"><p>Take Assessment</p></div>
         <p class="dot-text">Thank you!</p>
@@ -12,24 +12,27 @@
             <span>00<span class="minute">min</span></span>
           </div>
           <div>
-            <span class="seconds">010<span class="minute">sec</span></span>
+            <span class="seconds">00<span class="minute">sec</span></span>
           </div>
         </div>
       </div>
     </div>
     <div class="center">
-      <div class="image">
+      <div class=" d-flex justify-content-center align-item-center">
         <img src="../assets/confetti.png" alt="" />
       </div>
-      <div class="message">
+      <div class="message my-3 text-center">
         <p>
           We have received your assessment test, we will get back to you soon.
         </p>
         <p class="best-luck">Best of luck</p>
       </div>
     </div>
-
-    <button class="button">Home</button>
+    <div class="d-flex justify-content-center align-item-center">
+      <router-link to="/"><button class="button">Home</button></router-link>
+      
+    </div>
+    
   </div>
 </template>
 
@@ -38,8 +41,8 @@
     margin-top: 40px;
 } */
 .right {
-  margin-bottom: 150px;
-  margin-left: 150px;
+  /* margin-bottom: 150px; */
+  /* margin-left: 150px; */
 }
 span {
   font-family: Lato;
@@ -60,10 +63,7 @@ span {
   font-size: 12px;
   line-height: 14px;
 }
-.best-luck {
-  margin-left: 200px;
-  /* margin-bottom: 100px;  */
-}
+
 .button {
   background: #31d283;
   border-radius: 4px;
@@ -122,6 +122,6 @@ span {
   line-height: 52px;
   letter-spacing: -0.02em;
   color: #2b3c4e;
-  margin-right: 300px;
+  /* margin-right: 300px; */
 }
 </style>

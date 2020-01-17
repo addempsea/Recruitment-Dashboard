@@ -8,7 +8,7 @@
       <div class="head">
         <p>Dashboard</p>
         <span>
-          Your Application is currently being review, you wil be notified if
+          Your Application is currently being reviewed, you wil be notified if
           successful
         </span>
       </div>
@@ -104,10 +104,10 @@ export default {
 }
 .time-status {
   display: flex;
-  margin-top: 61px;
+  /* margin-top: 61px; */
 }
 .horizontal-line {
-  padding-top: 60px;
+  /* padding-top: 60px; */
   width: 400px;
   padding-left: 40px;
   color: solid #cecece;
@@ -166,7 +166,7 @@ export default {
   border-radius: 4px;
 }
 .assessment {
-  margin-top: 97px;
+  margin-top: 50px;
   display: flex;
 }
 

@@ -1,28 +1,27 @@
 <template>
   <div class="sidebar">
     <div class="applicant-image">
-      <div class="profile">
+      <div class="profile" v-if="!Profile.image">
         <img src="../assets/Ellipse.png" class="logo" />
+
       </div>
-      <h1 class="user-name">{{getProfile.fname + " " +getProfile.lname}}</h1>
-      <p class="user-email">{{getProfile.email}}</p>
+      <h1 class="user-name">{{Profile.fname + " " + Profile.lname}}</h1>
+      <p class="user-email">{{Profile.email}}</p>
     </div>
 
     <div class="sidebar-icon">
       <div class="container">
-        <router-link :to="{name: 'applicantDashboard'}">
-          <button class="logout">
+        <router-link :to="{name: 'applicantDashboard'}" class="tests">
+          
             <i class="fa fa-dashboard" aria-hidden="true"></i> 
             <span class="mx-3">Dashboard</span>
-          </button>
+          
         </router-link>
       </div>
       <div class="container">
-        <router-link :to="{name: 'takeAssessment'}">
-          <button class="logout">
+        <router-link :to="{name: 'takeAssessment'}" class="tests">
             <i class="fa fa-file" aria-hidden="true"></i> 
             <span class="mx-3">Assesment</span>
-          </button>
         </router-link>
       </div>
       
@@ -43,7 +42,7 @@ export default {
   name: "sidebar",
   data() {
     return {
-      
+      Profile: []
     }
   },
 
@@ -59,14 +58,18 @@ export default {
     }
   },
 
-  mounted () {
-    this.fetchProfile()
+  async mounted () {
+    await this.fetchProfile();
+    this.Profile = this.getProfile
   }
 
 }
 </script>
 
 <style scoped>
+.tests {
+  color: #212529;
+}
 a.router-link-exact-active {
   color: #42b983;
 }

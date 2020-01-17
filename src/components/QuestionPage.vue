@@ -15,13 +15,13 @@
         <div class="span">
           <div>
             <span>
-              00
+              {{mins}}
               <span class="minute">min</span>
             </span>
           </div>
           <div>
             <span class="seconds">
-              010
+              {{secs}}
               <span class="minute">sec</span>
             </span>
           </div>
@@ -67,16 +67,38 @@ export default {
       user: {
           answer: [],
           questionId: []
-      }
+      },
+      time: 1000 * 60
     };
   },
 
   computed: {
-    ...mapGetters(["getQuiz"])
+    ...mapGetters(["getQuiz"]),
+
+     mins() {
+      const val = Math.floor(this.time/60);
+      if (String(val).length === 1) {
+        return `0${val}`;
+        
+      }
+      // var kk = val.toString();
+      // var min = kk[0] + kk[1];
+      // var sec = kk[2] + kk[3]
+      // return min + " :" + sec
+      return val;
+    },
+    secs() {
+      const val = this.time % 60
+      if (String(val).length === 1) {
+        return `0${val}`
+      }
+      return val;
+    }
   },
 
   mounted() {
     this.fetchQuiz();
+    this.countdown();
   },
 
   methods: {
@@ -98,6 +120,17 @@ export default {
       }
       this.answers(this.user);
       this.$router.push({name: "success"})
+    },
+
+    countdown() {
+      setInterval(() => {
+        if(this.time > 0) {
+          this.time--;
+        }
+        else if (this.time == 1) {
+          this.submitQuiz()
+        }
+      })
     }
   }
 };

@@ -75,6 +75,9 @@ export default {
 
 
 <style  scoped>
+a.router-link-exact-active {
+  color: #42b983;
+}
 
 .tests {
   color: #212529;

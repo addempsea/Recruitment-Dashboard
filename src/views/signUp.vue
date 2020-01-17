@@ -5,9 +5,16 @@
 
       <h5 class="enyata">enyata</h5>
       <h6>Application Sign Up</h6>
+      
     </div>
+    <!-- <div class="container">
+      <p class="text-center bg-danger">{{apiResponse.message}}</p>
+    </div> -->
+     
     <form @submit.prevent="register">
+      <p class="text-center text-danger">{{apiResponse.message}}</p>
       <div class="input-form ">
+        
         <div class="first-input">
           <div class="form-item">
             <label for="name">First Name</label>
@@ -46,17 +53,17 @@
       <div>
         <button
           :disabled="test.password != user.password"
-          class="btn my-3"
+          class="btn my-3 "
           
         >Sign Up</button>
       </div>
     </form>
-    <p v-show="test.password != user.password" class="text-center">Passwords don't match</p>
+    <p v-show="test.password != user.password" class="text-center text-danger">Passwords don't match</p>
     <p class="link">
       Already have an account?
       <router-link :to="{name: 'login'}">Login</router-link>
     </p>
-    <p>{{apiResponse.message}}</p>
+    
   </div>
 </template>
 
@@ -117,6 +124,7 @@ export default {
       if (val.type == "success") {
         setTimeout(() => {
           this.$router.push({ name: "login" });
+          val.message = ""
         }, 3000);
       }
     }

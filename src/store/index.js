@@ -172,7 +172,7 @@ export default new Vuex.Store({
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         const response = await axios.get(
-          `http://localhost:3000/api/admin/questions`
+          `http://localhost:3000/api/questions`
         );
 
         commit('setQuiz', response.data)

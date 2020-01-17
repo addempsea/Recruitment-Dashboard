@@ -15,14 +15,14 @@
         <div class="span">
           <div>
             <span>
-              {{demo}}
-              <span class="minute">min</span>
+              {{30}}
+              <span class="minute">mins</span>
             </span>
           </div>
           <div>
             <span class="seconds">
-              000
-            <span class="minute">sec</span>
+              00
+              <span class="minute">sec</span>
             </span>
           </div>
         </div>
@@ -47,31 +47,7 @@
 
 <script>
 export default {
-  name: 'assessment',
-  data() {
-    return {
-      demo: 6,
-      int: 1000
-    }
-  },
-
-  computed: {
-    timer() {
-      return this.demo + 1
-    },
-
-    // setInterval(this.timer(), 1000)
-  },
-
-  methods: {
-    leter () {
-      setTimeout(() => {
-        this.demo + 1;
-      }, 1000);
-
-      return this.demo
-    }
-  },
+  name: 'assessment',  
 }
 </script>
 
@@ -114,7 +90,7 @@ span {
   color: #4f4f4f;
   margin-top: 0px;
   line-height: 17px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .dot-text {
@@ -155,10 +131,10 @@ h2 {
 }
 .timer {
   width: 100%;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 .timer-logo {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 .timer > p {
   font-family: Lato;

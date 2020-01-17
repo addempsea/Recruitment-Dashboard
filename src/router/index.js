@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home'
+import Home from '../views/applicantDashboard.vue'
 import register from '../views/signup.vue'
 
 
@@ -10,17 +10,26 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/register',
     name:'register',
-    component: register
+    component: register,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/login',
     name:'login',
-    component: () => import(/* webpackChunkName: "signUp" */ '../views/login.vue')
+    component: () => import(/* webpackChunkName: "signUp" */ '../views/login.vue'),
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/applicantSidebar',
@@ -30,7 +39,10 @@ const routes = [
   {
     path: '/applicantdashboard',
     name:'applicantDashboard',
-    component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue')
+    component: () => import(/* webpackChunkName: "applicantDashboard" */ '../views/applicantDashboard.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/entries',
@@ -65,7 +77,10 @@ const routes = [
   {
     path: '/takeAssessment',
     name:'takeAssessment',
-    component: () => import(/* webpackChunkName: "takeAssessment" */ '../views/takeAssessment.vue')
+    component: () => import(/* webpackChunkName: "takeAssessment" */ '../views/takeAssessment.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/composeAssessment',
@@ -75,7 +90,10 @@ const routes = [
   {
     path: '/question',
     name:'question',
-    component: () => import(/* webpackChunkName: "question" */ '../views/question.vue')
+    component: () => import(/* webpackChunkName: "question" */ '../views/question.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/successfulPage',
@@ -85,22 +103,31 @@ const routes = [
   {
     path: '/applicantSignup',
     name:'applicantSignup',
-    component: () => import(/* webpackChunkName: "applicantSignup" */ '../views/applicantSignup.vue')
+    component: () => import(/* webpackChunkName: "applicantSignup" */ '../views/applicantSignup.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/suestionPage',
+    path: '/questionPage',
     name:'QuestionPage',
     component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
   },
   {
     path: '/success',
     name:'success',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/Success.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/test',
     name:'test',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/TestTester.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/TestTester.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
 
   {
