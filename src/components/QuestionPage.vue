@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div v-if="getQuiz.sorted">
+    
     <div class="containers">
       <div class="container-side">
         <div class="p-tag">
@@ -52,6 +53,9 @@
         <button @click="next" class="second-button" v-if="questionIndex <= getQuiz.sorted.length - 1">next</button>
       </div>
   </div>
+  <div v-else>
+    <h1>Done test already</h1>
+  </div>
 </template>
 
 
@@ -73,7 +77,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getQuiz"]),
+    ...mapGetters(["getQuiz", "apiResponse"]),
 
      mins() {
       const val = Math.floor(this.time/60);
@@ -98,7 +102,7 @@ export default {
 
   mounted() {
     this.fetchQuiz();
-    this.countdown();
+    this.countdown;
   },
 
   methods: {
@@ -122,16 +126,16 @@ export default {
       this.$router.push({name: "success"})
     },
 
-    countdown() {
-      setInterval(() => {
-        if(this.time > 0) {
-          this.time--;
-        }
-        else if (this.time == 1) {
-          this.submitQuiz()
-        }
-      })
-    }
+  //   countdown( {
+  //     setInterval(() => {
+  //       if(this.time > 0) {
+  //         this.time--;
+  //       }
+  //       else if (this.time == 1) {
+  //         this.submitQuiz()
+  //       }
+  //     })
+  //   }
   }
 };
 </script>

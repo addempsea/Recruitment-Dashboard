@@ -4,8 +4,8 @@
       <div class="profile">
         <img src="../assets/Ellipse.png" class="logo" />
       </div>
-      <h1 class="user-name">{{getProfile.data.fname + " " + getProfile.data.lname}}</h1>
-      <p class="user-email">{{getProfile.data.email}}</p>
+      <h1 class="user-name">{{profile.data.fname + " " + profile.data.lname}}</h1>
+      <p class="user-email">{{profile.data.email}}</p>
     </div>
 
     <div class="sidebar-icon">
@@ -57,6 +57,11 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "adminbar",
+  data() {
+    return {
+      profile: []
+    }
+  },
   computed: {
     ...mapGetters(["getProfile"])
   },
@@ -66,8 +71,9 @@ export default {
     
   },
 
-  created () {
-    this.fetchAdminProfile()
+  async mounted () {
+    await this.fetchAdminProfile();
+    this.profile = this.getProfile;
   }
 
 }

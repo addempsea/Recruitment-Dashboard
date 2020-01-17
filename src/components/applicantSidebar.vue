@@ -12,7 +12,7 @@
           <input type="file" name="file" ref="file" @change="handleFileUpload"/>
         </div>
          <button type="submit" class="text-white p-2 btn btn-white">add profile picture</button>
-         <p>  </p>
+         
       </form>
 
       <h1 class="user-name">{{Profile.fname + " " + Profile.lname}}</h1>
@@ -194,7 +194,7 @@ a.router-link-exact-active {
 
 .logo {
   max-width: 160px;
-  max-height: 165px;
+  max-height: 185px;
   border-radius: 50%;
 }
 </style>
