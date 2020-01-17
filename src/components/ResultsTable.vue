@@ -1,39 +1,41 @@
 <template>
   <div class="row">
     <div class="col-3">
-      <AdminSidebars/>
+      <AdminSidebars />
     </div>
-    <div class="container my-5 col-8">
-      <h3>Results - Batch 2</h3>
-      <h6>Comprises of all that applied for batch 2</h6>
+    <div class="container my-5 col-9">
+      <h3>Results - Batch 1</h3>
+      <h6>Comprises of all that applied for batch 1</h6>
 
       <div class="my-4">
+        
         <table class="table table-borderless">
           <thead class="heading">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">
+                DOB - Age
+                <i class="fa fa-sort mx-1" aria-hidden="true"></i>
+              </th>
+              <th scope="col">Address</th>
+              <th scope="col">University</th>
+              <th scope="col" >
+                CGPA
+                <i class="fa fa-sort mx-1" aria-hidden="true" @click="sort('cgpa')"></i>
+              </th>
+              <th scope="col">Score</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
+            <tr v-for="(app, index) in apps" :key="index" class="mx-1">
+              <td>{{app.userProfile.fname + " " + app.userProfile.lname}}</td>
+              <td>{{app.userProfile.email}}</td>
+              <td>{{app.userProfile.dob + " / " + getAge(app.userProfile.dob)}}</td>
+              <td> {{app.userProfile.address}} </td>
+              <td> {{app.userProfile.university}} </td>
+              <td> {{app.userProfile.cgpa}} </td>
+              <td> {{Math.round((app.score/app.answer.length) * 100) + "%"}} </td>
             </tr>
           </tbody>
         </table>
@@ -44,12 +46,57 @@
 
 <script>
 import AdminSidebars from "../components/AdminSidebars";
-// @ is an alias to /src
+import { mapGetters, mapActions } from "vuex";
+
 
 export default {
-  name: "adminQstn",
+  name: "results",
+  data() {
+    return {
+      apps: [],
+      currentSort:'Name',
+      currentSortDir:'asc'
+    }
+  },
+
   components: {
-   AdminSidebars
+    AdminSidebars
+  },
+
+  computed: {
+    ...mapGetters(["getScores"])
+  },
+    
+  watch: {
+    sortedCats() {
+      return this.cats.sort((a,b) => {
+        let modifier = 1;
+        if(this.currentSortDir === 'desc') modifier = -1;
+        if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      });
+    }
+  },
+
+  methods: {
+    ...mapActions(["fetchScores"]),
+    getAge(dob) {
+      return Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10);
+    },
+
+    sort(s) {
+    if(s === this.currentSort) {
+      this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+    }
+    this.currentSort = s;
+  }
+  },
+
+  async mounted() {
+
+    await this.fetchScores();
+    this.apps = this.getScores;
   }
 };
 </script>
@@ -71,10 +118,31 @@ h6 {
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
+
   color: #4f4f4f;
 }
 
 .heading {
-  background: #2B3C4E;
+  background: #2b3c4e;
+}
+th {
+  color: white;
+  font-family: Lato;
+  font-size: 14px;
+  text-align: center;
+  line-height: 17px;
+}
+td {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #4f4f4f;
+}
+i {
+  cursor: pointer;
+  color: white;
 }
 </style>

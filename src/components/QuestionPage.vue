@@ -100,9 +100,10 @@ export default {
     }
   },
 
-  mounted() {
-    this.fetchQuiz();
-    this.countdown();
+  async mounted() {
+    await this.fetchQuiz();
+    await this.countdown();
+    this.quiz = await this.shuffle(this.getQuiz.sorted)
   },
 
   methods: {
@@ -119,10 +120,15 @@ export default {
     },
 
     submitQuiz () {
-      for (let i = 0; i < this.getQuiz.data.length; i++) {
-        this.user.questionId.push(this.getQuiz.data[i]._id);
+      for (let i = 0; i < this.quiz.length; i++) {
+        this.user.questionId.push(this.quiz[i]._id);
       }
+      console.log(this.user.answer);
+      console.log(this.user.questionId);
+      
+      
       this.answers(this.user);
+      this.time = 0;
       this.$router.push({name: "success"})
     },
 
@@ -135,6 +141,18 @@ export default {
           this.submitQuiz()
         }
       })
+    },
+
+    shuffle (array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+  },
+
+  watch: {
+    apiResponse(val) {
+      if (val.type == "success") {
+        val.message = ""
+      }
     }
   }
 };

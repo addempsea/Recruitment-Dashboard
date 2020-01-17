@@ -16,7 +16,8 @@ export default new Vuex.Store({
     },
     profile: '',
     quiz: [],
-    applications: []
+    applications: [],
+    scores: []
   },
   getters: {
     loggedIn(state) {
@@ -28,7 +29,8 @@ export default new Vuex.Store({
     getProfile: state => state.profile,
     getQuiz: state => state.quiz,
     getAdmin: state => state.admin,
-    getApps: state => state.applications
+    getApps: state => state.applications,
+    getScores: state => state.scores
   },
 
   mutations: {
@@ -58,6 +60,10 @@ export default new Vuex.Store({
 
     setApps(state, user) {
       state.applications = user
+    },
+
+    setScores(state, user) {
+      state.scores = user
     },
 
     retrieveToken(state, token) {
@@ -281,7 +287,19 @@ export default new Vuex.Store({
         commit('setApps', response.data.data)
 
       } catch (error) {
-        commit('setProfile', error.response)
+        commit('setApps', error.response)
+      }
+    },
+
+    async fetchScores({ commit }) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        
+        const response = await axios.get(`http://localhost:3000/api/scores`);
+        commit('setScores', response.data.answers)
+
+      } catch (error) {
+        commit('setScores', error.response)
       }
     },
 
