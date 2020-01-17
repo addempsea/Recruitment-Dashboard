@@ -206,6 +206,30 @@ export default new Vuex.Store({
       }
     },
 
+    async editProfile({ commit },  userInfo) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        var id = localStorage.getItem('userP')
+        const response = await axios.put(`http://localhost:3000/api/user/profilepic/${id}`, userInfo);
+        
+
+        let responseObject = {
+          type: 'success',
+          message: response.data.message
+        }
+        commit('setResponse', responseObject)
+       
+  
+      } catch (error) {
+       
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        commit('setResponse', responseObject)
+      }
+    },
+
     async adminLogin({ commit }, userInfo) {
       try {
         const response = await axios.post('http://localhost:3000/api/admin/login', userInfo);
@@ -241,8 +265,7 @@ export default new Vuex.Store({
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         var id = localStorage.getItem('admin')
         const response = await axios.get(`http://localhost:3000/api/admin/${id}`);
-        // console.log(id);
-        // console.log(response);
+        
         commit('setProfile', response.data)
 
       } catch (error) {

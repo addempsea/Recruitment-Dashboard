@@ -1,10 +1,20 @@
 <template>
   <div class="sidebar">
     <div class="applicant-image">
-      <div class="profile" v-if="!Profile.image">
-        <img src="../assets/Ellipse.png" class="logo" />
-
+      <div class="" v-if="Profile.profpic">
+        <img :src="Profile.profpic" class="logo" />
       </div>
+      <form class="fileup" v-else  @submit.prevent="submitForm" enctype="multipart/form-data">
+        <div class="upload-btn-wrapper">
+          <button class="btns">
+            <strong><i class="fa fa-plus" aria-hidden="true"></i></strong> 
+          </button>
+          <input type="file" name="file" ref="file" @change="handleFileUpload"/>
+        </div>
+         <button type="submit" class="text-white p-2 btn btn-white">add profile picture</button>
+         <p>  </p>
+      </form>
+
       <h1 class="user-name">{{Profile.fname + " " + Profile.lname}}</h1>
       <p class="user-email">{{Profile.email}}</p>
     </div>
@@ -12,23 +22,20 @@
     <div class="sidebar-icon">
       <div class="container">
         <router-link :to="{name: 'applicantDashboard'}" class="tests">
-          
-            <i class="fa fa-dashboard" aria-hidden="true"></i> 
-            <span class="mx-3">Dashboard</span>
-          
+          <i class="fa fa-dashboard" aria-hidden="true"></i>
+          <span class="mx-3">Dashboard</span>
         </router-link>
       </div>
       <div class="container">
         <router-link :to="{name: 'takeAssessment'}" class="tests">
-            <i class="fa fa-file" aria-hidden="true"></i> 
-            <span class="mx-3">Assesment</span>
+          <i class="fa fa-file" aria-hidden="true"></i>
+          <span class="mx-3">Assesment</span>
         </router-link>
       </div>
-      
-      
+
       <div class="container">
-        <button  @click="logut" class="logout">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> 
+        <button @click="logut" class="logout">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
           <span class="mx-3">Logout</span>
         </button>
       </div>
@@ -42,28 +49,40 @@ export default {
   name: "sidebar",
   data() {
     return {
-      Profile: []
-    }
+      Profile: [],
+      file: '',
+      message: ""
+    };
   },
 
   computed: {
-    ...mapGetters(["getProfile"])
+    ...mapGetters(["getProfile", "apiResponse"])
   },
 
   methods: {
-    ...mapActions(["fetchProfile", "logout"]),
+    ...mapActions(["fetchProfile", "logout", "editProfile"]),
     logut() {
-      this.logout()
-      this.$router.push({name: "login"})
+      this.logout();
+      this.$router.push({ name: "login" });
+    },
+
+    handleFileUpload() {
+      const file = this.$refs.file.files[0];
+      this.file = file
+    },
+
+    submitForm() {
+      const formData = new FormData();
+      formData.append('file',this.file);
+      this.editProfile(formData)
     }
   },
 
-  async mounted () {
+  async mounted() {
     await this.fetchProfile();
-    this.Profile = this.getProfile
+    this.Profile = this.getProfile;
   }
-
-}
+};
 </script>
 
 <style scoped>
@@ -74,8 +93,8 @@ a.router-link-exact-active {
   color: #42b983;
 }
 .logout {
- background: #ffff;
- border: none;
+  background: #ffff;
+  border: none;
 }
 
 .sidebar {
@@ -147,5 +166,35 @@ a.router-link-exact-active {
   font-weight: bold;
   color: #2b3c4e;
   border-left: 4px solid #31d283;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btns {
+  border: 1.55px dashed #2b3c4e;
+  box-sizing: border-box;
+  /* color: #2b3c4e; */
+  padding: 6px 18px;
+  border-radius: 8px;
+  font-size: 12px;
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.logo {
+  max-width: 160px;
+  max-height: 165px;
+  border-radius: 50%;
 }
 </style>
