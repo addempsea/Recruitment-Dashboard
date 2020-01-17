@@ -102,7 +102,7 @@ export default {
 
   mounted() {
     this.fetchQuiz();
-    this.countdown;
+    this.countdown();
   },
 
   methods: {
@@ -126,16 +126,16 @@ export default {
       this.$router.push({name: "success"})
     },
 
-  //   countdown( {
-  //     setInterval(() => {
-  //       if(this.time > 0) {
-  //         this.time--;
-  //       }
-  //       else if (this.time == 1) {
-  //         this.submitQuiz()
-  //       }
-  //     })
-  //   }
+    countdown() {
+      setInterval(() => {
+        if(this.time > 0) {
+          this.time--;
+        }
+        else if (this.time == 1) {
+          this.submitQuiz()
+        }
+      })
+    }
   }
 };
 </script>

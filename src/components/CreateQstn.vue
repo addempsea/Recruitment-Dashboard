@@ -121,6 +121,10 @@ export default {
 
         console.log(formData);
         this.createQstn(formData);
+        this.file = "";
+        this.question = "";
+        this.options = [];
+        this.correctAns = ""
       } else {
         alert("All fields are required");
       }
