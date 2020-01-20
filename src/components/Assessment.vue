@@ -31,8 +31,8 @@
 
     <div class="timer">
       <center>
-        <img class="timer-logo" src="../assets/timer.png" alt="timer" />
-        <p>
+        <img class="timer-logo" src="../assets/timer.png" alt="timer" id="loading"/>
+        <p class="my-4">
           We have four days left until the next assessment
           <br />Watch this
           space
@@ -133,8 +133,17 @@ h2 {
   width: 100%;
   /* margin-top: 100px; */
 }
-.timer-logo {
-  /* padding-bottom: 20px; */
+#loading {
+animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+from {
+-webkit-transform: rotate(0deg);
+}
+to {
+-webkit-transform: rotate(359deg);
+}
 }
 .timer > p {
   font-family: Lato;
