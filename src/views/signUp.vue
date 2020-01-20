@@ -7,12 +7,12 @@
       <h6>Application Sign Up</h6>
       
     </div>
-    <!-- <div class="container">
-      <p class="text-center bg-danger">{{apiResponse.message}}</p>
-    </div> -->
+    
      
     <form @submit.prevent="register">
-      <p class="text-center text-danger">{{apiResponse.message}}</p>
+     <div class="container col-6">
+        <p class="response" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
+     </div>
       <div class="input-form ">
         
         <div class="first-input">
@@ -29,7 +29,7 @@
           <div class="form-item">
             <label for="name">Password</label>
             <br />
-            <input class="input-image" type="password" name="password" v-model="user.password" />
+            <input class="input-image" type="password" name="password" v-model="user.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
           </div>
         </div>
         <div class="second-input">
@@ -214,5 +214,19 @@ button {
   font-style: italic;
   font-weight: normal;
   text-align: center;
+}
+
+.response {
+
+  text-align: center;
+  
+}
+.response.failed {
+  background-color: red;
+  color: #2b3c4e;
+}
+.response.success {
+  background-color: green;
+  color: #2b3c4e;
 }
 </style>

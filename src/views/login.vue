@@ -6,7 +6,7 @@
       <h6>Applicant Log In</h6>
     </div>
     <div>
-      <p class="text-center text-danger">{{apiResponse.message}}</p>
+      <p class="response col-5" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
       <form class="input-form" @submit.prevent="loging">
         <div class="form-item">
           <label for="name">Email Address</label> <br>
@@ -70,8 +70,13 @@ export default {
     apiResponse(val) {
       if (val.type == "success") {
         setTimeout(() => {
-          this.$router.push({ name: "applicantSignup" });
-          val.message = ""
+          if (val.hasApp === true) {
+            this.$router.push({ name: "home" });
+            val.message = ""
+          } else {
+            this.$router.push({ name: "applicantSignup" });
+            val.message = ""
+          }
         }, 3000);
       }
     }
@@ -148,5 +153,18 @@ input {
   background-image: url("../assets/Vector.png");
   background-position: 350px;
   background-repeat: no-repeat;
+}
+.response {
+  /* padding: 1rem; */
+  text-align: center;
+  
+}
+.response.failed {
+  background-color: red;
+  color: #2b3c4e;
+}
+.response.success {
+  background-color: green;
+  color: #2b3c4e;
 }
 </style>

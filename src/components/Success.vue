@@ -37,13 +37,7 @@
 </template>
 
 <style scoped>
-/* .center {
-    margin-top: 40px;
-} */
-.right {
-  /* margin-bottom: 150px; */
-  /* margin-left: 150px; */
-}
+
 span {
   font-family: Lato;
   font-style: normal;
@@ -117,11 +111,11 @@ span {
 .p-tag {
   font-family: Lato;
   font-style: normal;
-  /* font-weight: 100; */
+
   font-size: 30px;
   line-height: 52px;
   letter-spacing: -0.02em;
   color: #2b3c4e;
-  /* margin-right: 300px; */
+  
 }
 </style>

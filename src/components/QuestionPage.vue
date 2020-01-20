@@ -15,13 +15,13 @@
         <p>Timer</p>
         <div class="span">
           <div>
-            <span>
+            <span class="time">
               {{mins}}
               <span class="minute">min</span>
             </span>
           </div>
           <div>
-            <span class="seconds">
+            <span class="seconds time">
               {{secs}}
               <span class="minute">sec</span>
             </span>
@@ -33,13 +33,14 @@
       <div v-show="index === questionIndex">
       
           <h6 class="text-center">Question {{+ " " + index + 1}}</h6>
-          <h2 class="text-center">{{question.question}}</h2>
-         <div class="row text-center">
-            <div v-for="(answer, index) in question.options" :key="index" class="col-6">
-              <input type="radio" :name="index" :value="answer" v-model="answerd"/>
-              <label class="mx-3">{{answer}}</label>
+          <h2 class="text-center question_name">{{question.question}}</h2>
+         <div class= "d-flex justify-content-center mt-5">
+           <div class="mb-5">
+              <div v-for="(answer, index) in question.options" :key="index" class="d-flex align-items-center mb-3">
+                <input type="radio" :name="index" :value="answer" v-model="answerd"/>
+                <span class="mx-3 options_name">{{answer}}</span>
+              </div> 
             </div>
-            
          </div>
           
       </div>
@@ -129,7 +130,7 @@ export default {
       
       this.answers(this.user);
       this.time = 0;
-      this.$router.push({name: "success"})
+      this.$router.push({name: "successfulPage"})
     },
 
     countdown() {
@@ -161,10 +162,27 @@ export default {
 
 
 <style scoped>
+.question_name {
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #2B3C4E;
+}
+
+.options_name {
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #2B3C4E;
+}
 li {
   list-style: none;
 }
-span {
+.time {
   font-family: Lato;
   font-style: normal;
   font-weight: 300;

@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <div class="first_sec container overflow-hidden">
+    <div class="first_sec container my-5 overflow-hidden">
       <div class="mb-2 image">
         <img src="../assets/white logo.png" alt="enyata_logo" class="my-5" />
       </div>
@@ -9,8 +9,10 @@
         <h3>enyata</h3>
         <h6>Admin Log In</h6>
       </div>
-      <p class="api_res text-center">{{ apiResponse.message }}</p>
-      <div class="form-gro my-5">
+      <div class="container col-6">
+          <p class="response" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
+      </div>
+      <div class="form-gro">
         <form @submit.prevent="loging">
           <div class="form-group">
             <label for>Email Address</label>
@@ -21,7 +23,7 @@
             <input type="password" class="form-control" name="password" v-model="user.password" />
           </div>
           <button type="button" class="btn btn-primary" @click="loging">Sign in</button>
-          <div class="account mb-4">
+          <div class="account mb-2">
             <router-link to="#" class="password">Forgot password?</router-link>
           </div>
         </form>
@@ -140,5 +142,18 @@ input {
 label {
   color: white;
   margin-right: 17em;
+}
+.response {
+
+  text-align: center;
+  
+}
+.response.failed {
+  background-color: red;
+  color: #2b3c4e;
+}
+.response.success {
+  background-color: green;
+  color: #2b3c4e;
 }
 </style>

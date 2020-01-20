@@ -111,7 +111,10 @@ const routes = [
   {
     path: '/questionPage',
     name:'QuestionPage',
-    component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue')
+    component: () => import(/* webpackChunkName: "QuestionPage" */ '../components/QuestionPage.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
   {
     path: '/success',
@@ -133,37 +136,55 @@ const routes = [
   {
     path: '/admindashboard',
     name:'admindashboard',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/adminDashboard.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/adminDashboard.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
 
   {
     path: '/adminapplication',
     name:'adminapplication',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateApplication.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateApplication.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
 
   {
     path: '/adminquestion',
     name:'adminquestion',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateQstn.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/CreateQstn.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
 
   {
     path: '/adminlogin',
     name:'adminlogin',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/AdminLogin.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/AdminLogin.vue'),
+    meta: {
+      requiresG: true
+    }
   },
 
   {
     path: '/adminentries',
     name:'adminentries',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/EntriesTable.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/EntriesTable.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
 
   {
     path: '/adminresult',
     name:'adminresult',
-    component: () => import(/* webpackChunkName: "Success" */ '../components/ResultsTable.vue')
+    component: () => import(/* webpackChunkName: "Success" */ '../components/ResultsTable.vue'),
+    meta: {
+      requiresAdmin: true
+    }
   },
 
 ]

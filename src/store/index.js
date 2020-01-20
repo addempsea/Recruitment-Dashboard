@@ -12,7 +12,8 @@ export default new Vuex.Store({
 
     response: {
       type: "",
-      message: ""
+      message: "",
+      hasApp: ''
     },
     profile: '',
     quiz: [],
@@ -23,6 +24,8 @@ export default new Vuex.Store({
     loggedIn(state) {
       return state.token !== null
     },
+
+    
 
     apiResponse: state => state.response,
     getUser: state => state.user,
@@ -38,7 +41,8 @@ export default new Vuex.Store({
     setResponse: (state, payload) => {
       state.response = {
         type: payload.type,
-        message: payload.message
+        message: payload.message,
+        hasApp: payload.hasApp
       }
     },
 
@@ -112,15 +116,19 @@ export default new Vuex.Store({
         const response = await axios.post('http://localhost:3000/api/user/login', userInfo);
           let responseObject = {
             type: 'success',
-            message: response.data.message
+            message: response.data.message,
+            hasApp: response.data.hasApplied
           }
+
+          console.log(response.data);
+          
 
           const token = response.data.token
           localStorage.setItem('access_token', token)
           commit('retrieveToken', token)
           commit('setResponse', responseObject)
           
-          console.log(response.data.data._id);
+          // console.log(response.data.data._id);
           const user = await response.data.data._id
           localStorage.setItem('userP', user)
           commit('setUser',user)

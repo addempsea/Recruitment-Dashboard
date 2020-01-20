@@ -5,7 +5,7 @@
       <h3>enyata</h3>
       <p>Applicant Form</p>
     </div>
-    <div class="form-wrapper mx-5">
+    <div class="form-wrapper container">
       <form class="mx-5 p-5" enctype="multipart/form-data" @submit.prevent="submitForm">
         <div class="fileup">
           <div class="upload-btn-wrapper">
@@ -13,7 +13,9 @@
             <input type="file" name="file" ref="file" @change="handleFileUpload" />
           </div>
         </div>
-        <p class="text-danger text-center my-3"> {{apiResponse.message || message}} </p>
+        <div class="container col-6 my-2">
+          <p class="response" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
+        </div>
         <div class="row mt-3">
           <div class="col">
             <label>First Name</label>
@@ -147,7 +149,8 @@ export default {
       if (val.type == "success") {
         setTimeout(() => {
           this.$router.push({ name: "applicantDashboard"});
-        }, 2000);
+          val.message = ' '
+        }, 3000);
       }
     }
   }
@@ -239,17 +242,18 @@ label {
   /* margin-right: auto; */
 }
 input {
-  border: 1.5px solid #2b3c4e;
+  border: 1px solid #2b3c4e !important ;
   box-sizing: border-box;
   border-radius: 4px;
   display: flex;
+
   margin-left: auto;
   margin-right: auto;
 }
+
 .btn {
-  /* width: 70%;
-  max-width: 379px;
-  height: 50px; */
+  
+  height: 50px; 
   margin-left: auto;
   margin-right: auto;
   /* margin-top: 40px; */
@@ -262,5 +266,19 @@ input {
   font-size: 16px;
   color: #ffffff;
   border: none;
+}
+
+.response {
+
+  text-align: center;
+  
+}
+.response.failed {
+  background-color: red;
+  color: #2b3c4e;
+}
+.response.success {
+  background-color: green;
+  color: #2b3c4e;
 }
 </style>

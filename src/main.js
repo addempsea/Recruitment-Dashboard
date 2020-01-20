@@ -30,6 +30,28 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAdmin)) {
+//     if (!store.getters.adminLogin) {
+//       next({
+//         name: 'adminlogin',
+//       })
+//     } else {
+//       next()
+//     }
+//   } else if (to.matched.some(record => record.meta.requiresG)) {
+//     if (store.getters.adminLogin) {
+//       next({
+//         name: 'admindashboard',
+//       })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// })
+
 new Vue({
   router,
   store,
