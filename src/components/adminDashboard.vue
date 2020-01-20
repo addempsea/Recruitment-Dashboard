@@ -41,28 +41,19 @@
       <div class="row">
         <div class="col">
           <h4 class="heading">History</h4>
-          <p class="small-heading">Last Update: 18.24.22/02/19</p>
+          <p class="small-heading">Last Update: 18.24.21/01/20</p>
           <div>
             <table class="table table-borderless">
               
               <tbody>
-                <tr>
+                <tr class="different-row">
                   
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
+                  <td>Academy Batch 1</td>
+                  <td>0 students</td>
+                  <td>started 19/01/2020</td>
                   
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
                 </tr>
-                <tr>
-                  
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+               
               </tbody>
             </table>
           </div>
@@ -112,7 +103,14 @@ export default {
 </script>
 
 <style scoped>
-
+.different-row:hover {
+  background: #ffffff;
+  box-shadow: 8px 18px 20px rgba(79, 79, 79, 0.3);
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2b3c4e;
+  border-left: 10px solid #5ABEFD;;
+}
 .heading {
   font-family: Lato;
   font-style: normal;

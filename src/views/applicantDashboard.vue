@@ -4,7 +4,7 @@
       <applicantSidebar />
     </div>
 
-    <div class="dashboard-head">
+    <div class="dashboard-head my-3">
       <div class="head">
         <p>Dashboard</p>
         <span>
@@ -16,9 +16,9 @@
       <div class="time-status">
         <div class="time">
           <p>Date of Application</p>
-          <span>09.09.19</span>
+          <span>19.01.20</span>
           <div class="horizontal"></div>
-          <p class="small-text">4 days since applied</p>
+          <p class="small-text">2 days since applied</p>
         </div>
         <div class="app-status">
           <p>Application Status</p>

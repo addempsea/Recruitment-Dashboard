@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(app, index) in apps" :key="index" class="mx-1">
+            <tr v-for="(app, index) in apps" :key="index" class="mx-1 different-row">
               <td>{{app.fname + " " + app.lname}}</td>
               <td>{{app.email}}</td>
               <td>{{app.dob + " / " + getAge(app.dob)}}</td>
@@ -99,6 +99,14 @@ export default {
 </script>
 
 <style scoped>
+.different-row:hover {
+  background: #ffffff;
+  box-shadow: 8px 18px 20px rgba(79, 79, 79, 0.3);
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2b3c4e;
+  border-left: 10px solid #31d283;
+}
 h3 {
   font-family: Lato;
   font-style: normal;
