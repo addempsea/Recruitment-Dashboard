@@ -29,7 +29,8 @@
           <div class="form-item">
             <label for="name">Password</label>
             <br />
-            <input class="input-image" type="password" name="password" v-model="user.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+            <input class="input-image" :type=inputType name="password" v-model="user.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/><span><i @click="toggleP" class="fa fa-eye-slash field-icon" aria-hidden="true"></i></span>
+
           </div>
         </div>
         <div class="second-input">
@@ -46,7 +47,8 @@
           <div class="form-item">
             <label for="name">Confirmed Password</label>
             <br />
-            <input class="input-image" type="password" v-model="test.password" />
+            <input class="input-image" :type=inputType v-model="test.password" /><span><i @click="toggleP" class="fa fa-eye-slash field-icon" aria-hidden="true"></i></span>
+
           </div>
         </div>
       </div>
@@ -83,7 +85,9 @@ export default {
 
       test: {
         password: ""
-      }
+      },
+
+      inputType: "password"
     };
   },
 
@@ -116,6 +120,14 @@ export default {
       } else {
         alert("All fields are required");
       }
+    },
+
+    toggleP() {
+      if (this.inputType == "password") {
+        this.inputType = "text"
+      } else {
+        this.inputType = "password"
+      }
     }
   },
 
@@ -136,6 +148,14 @@ export default {
 
 
 <style  scoped>
+i {
+  cursor: pointer;
+}
+.field-icon {
+  margin-left: -30px;
+  position: relative;
+  z-index: 2;
+}
 .input-form {
   display: flex;
   justify-content: center;
@@ -182,11 +202,7 @@ input {
   box-sizing: border-box;
   border-radius: 4px;
 }
-.input-image {
-  background-image: url("../assets/Vector.png");
-  background-position: 350px;
-  background-repeat: no-repeat;
-}
+
 /* h6 {
   font-style: italic;
   font-size: 25px;

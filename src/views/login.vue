@@ -14,7 +14,7 @@
         </div>
         <div class="form-item my-3">
           <label for="name">Password</label> <br>
-          <input class="input-image" type="password" name="password" v-model="user.password" />
+          <input class="input-image" :type=inputType name="password" v-model="user.password" /><span><i @click="toggleP" class="fa fa-eye-slash field-icon" aria-hidden="true"></i></span>
         </div>
         <button class="button">Sign In</button>
       </form>
@@ -37,7 +37,8 @@ export default {
       user: {
         email: '',
         password: ''
-      }
+      },
+      inputType: "password"
     }
   },
 
@@ -63,6 +64,14 @@ export default {
       } else {
         alert('All fields are required')
       }
+    },
+
+    toggleP() {
+      if (this.inputType == "password") {
+        this.inputType = "text"
+      } else {
+        this.inputType = "password"
+      }
     }
   },
 
@@ -87,6 +96,14 @@ export default {
 
 
 <style scoped>
+i {
+  cursor: pointer;
+}
+.field-icon {
+  margin-left: -30px;
+  position: relative;
+  z-index: 2;
+}
 .applicant-form {
     max-width: 400px;
     margin: 0 auto;

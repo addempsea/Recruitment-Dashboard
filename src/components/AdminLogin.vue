@@ -20,7 +20,7 @@
           </div>
           <div class="form-group">
             <label for>Password</label>
-            <input type="password" class="form-control" name="password" v-model="user.password" />
+            <input :type=inputType class="form-control" name="password" v-model="user.password" /><span><i @click="toggleP" class="fa fa-eye-slash field-icon mr-2" aria-hidden="true"></i></span>
           </div>
           <button type="button" class="btn btn-primary" @click="loging">Sign in</button>
           <div class="account mb-2">
@@ -41,7 +41,9 @@ export default {
       user: {
         email: "",
         password: ""
-      }
+      },
+
+      inputType: "password"
     };
   },
 
@@ -67,6 +69,14 @@ export default {
         alert("All fields are required");
         
       }
+    },
+
+    toggleP() {
+      if (this.inputType == "password") {
+        this.inputType = "text"
+      } else {
+        this.inputType = "password"
+      }
     }
   },
 
@@ -85,6 +95,17 @@ export default {
 </script>
 
 <style scoped>
+i {
+  cursor: pointer;
+
+}
+.field-icon {
+  float: right;
+  margin-left: -0px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+}
 .api_res {
     color: red;
 }
