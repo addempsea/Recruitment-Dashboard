@@ -250,7 +250,9 @@ input {
   margin-left: auto;
   margin-right: auto;
 }
-
+.rows {
+  margin-top: 20px;
+}
 .btn {
   
   height: 50px; 
