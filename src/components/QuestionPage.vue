@@ -73,7 +73,8 @@ export default {
           answer: [],
           questionId: []
       },
-      time: 1000 * 60
+      time: 30 * 60,
+      times: null
     };
   },
 
@@ -81,17 +82,14 @@ export default {
     ...mapGetters(["getQuiz", "apiResponse"]),
 
      mins() {
-      const val = Math.floor(this.time/60);
+      const val = Math.floor(this.time / 60);
       if (String(val).length === 1) {
         return `0${val}`;
         
       }
-      // var kk = val.toString();
-      // var min = kk[0] + kk[1];
-      // var sec = kk[2] + kk[3]
-      // return min + " :" + sec
       return val;
     },
+
     secs() {
       const val = this.time % 60
       if (String(val).length === 1) {
@@ -103,7 +101,7 @@ export default {
 
   async mounted() {
     await this.fetchQuiz();
-    await this.countdown();
+    await this.timed();
     this.quiz = await this.shuffle(this.getQuiz.sorted)
   },
 
@@ -124,8 +122,6 @@ export default {
       for (let i = 0; i < this.quiz.length; i++) {
         this.user.questionId.push(this.quiz[i]._id);
       }
-      console.log(this.user.answer);
-      console.log(this.user.questionId);
       
       
       this.answers(this.user);
@@ -133,15 +129,19 @@ export default {
       this.$router.push({name: "successfulPage"})
     },
 
+    timed () {
+      this.times = setInterval(() => this.countdown(), 1000);
+    },
+
     countdown() {
-      setInterval(() => {
+      
         if(this.time > 0) {
           this.time--;
         }
         else if (this.time == 1) {
           this.submitQuiz()
         }
-      })
+      
     },
 
     shuffle (array) {
