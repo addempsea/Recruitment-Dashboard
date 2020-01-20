@@ -80,7 +80,7 @@ export default {
 
   async mounted() {
     await this.fetchProfile();
-    this.Profile = this.getProfile;
+    this.Profile = await this.getProfile;
   }
 };
 </script>

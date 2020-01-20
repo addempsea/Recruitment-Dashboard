@@ -91,9 +91,9 @@ export default {
   }
   },
 
-  mounted() {
-    this.fetchApps();
-    this.apps = this.getApps;
+  async mounted() {
+    await this.fetchApps();
+    this.apps = await this.getApps;
   }
 };
 </script>

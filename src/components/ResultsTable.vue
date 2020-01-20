@@ -22,7 +22,6 @@
               <th scope="col">University</th>
               <th scope="col" >
                 CGPA
-                <i class="fa fa-sort mx-1" aria-hidden="true" @click="sort('cgpa')"></i>
               </th>
               <th scope="col">Score</th>
             </tr>

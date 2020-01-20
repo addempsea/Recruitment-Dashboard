@@ -1,7 +1,7 @@
 <template>
   <div class="applicant-form mt-5">
     <div class="home">
-      <img class="logo" alt="Enyata-logo" src="../assets/enyata-logo.png" />
+      <img class="logo" alt="Enyata-logo" src="../assets/enyata_logo.png" />
       <h5 class="enyata">enyata</h5>
       <h6>Applicant Log In</h6>
     </div>
@@ -99,7 +99,7 @@ export default {
   text-align: left;
 }
 img {
-  width: 48px;
+ 
   height: 51px;
 }
 h5 {
@@ -142,6 +142,7 @@ input {
   border: 1.5px solid #bdbdbd;
   box-sizing: border-box;
   border-radius: 4px;
+  padding: 10px 10px;
 }
 .input-image {
   background-image: url("../assets/Vector.png");

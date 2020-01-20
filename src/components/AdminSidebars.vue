@@ -38,7 +38,8 @@
         </router-link>
       </div>
       <div class="active my-3">
-        <router-link :to="{name: 'applicantDashboard'}" class="tests">
+        <router-link to="#
+        " class="tests">
             <i class="fa fa-refresh" aria-hidden="true"></i> 
             <span class="mx-3">Assessment History</span>
         </router-link>
@@ -73,7 +74,7 @@ export default {
 
   async mounted () {
     await this.fetchAdminProfile();
-    this.profile = this.getProfile;
+    this.profile = await this.getProfile;
   }
 
 }

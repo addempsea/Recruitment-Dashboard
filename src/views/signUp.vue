@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home mt-3">
-      <img class="logo" alt="Enyata-logo" src="../assets/Group 4.8.jpg" />
+      <img class="logo" alt="Enyata-logo" src="../assets/enyata_logo.png" />
 
       <h5 class="enyata">enyata</h5>
       <h6>Application Sign Up</h6>
@@ -160,6 +160,7 @@ export default {
 }
 input {
   width: 300px;
+  padding: 10px 10px;
 }
 h5 {
   font-size: 30px;
@@ -191,7 +192,7 @@ input {
   font-size: 25px;
 } */
 img {
-  width: 48px;
+  
   height: 51px;
 }
 p {
