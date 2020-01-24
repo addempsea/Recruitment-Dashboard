@@ -36,7 +36,7 @@
           </div>
           <div class="form-group my-3">
             <label for>Instructions</label>
-            <textarea class="form-control" name id rows="4" v-model="instructions"></textarea>
+            <textarea class="form-control" name id rows="4" v-model="instruction"></textarea>
           </div>
           <div class="text-center">
             <button class="btn btn-primary" type="submit">Submit</button>
@@ -74,7 +74,7 @@ export default {
         this.file == "" ||
         this.batch_id == "" ||
         this.closing_date == "" ||
-        this.instructions == ""
+        this.instruction == ""
       ) {
         return false;
       } else {
@@ -97,7 +97,7 @@ export default {
         formData.append("batch_id", this.batch_id);
         formData.append("link", this.link);
         formData.append("closing_date", this.closing_date);
-        formData.append("instructions", this.instructions);
+        formData.append("instruction", this.instruction);
         this.createApp(formData);
         this.file = '';
         this.batch_id =  '';
