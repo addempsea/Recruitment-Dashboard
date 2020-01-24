@@ -16,7 +16,7 @@
               <th scope="col">Email</th>
               <th scope="col">
                 DOB - Age
-                <i class="fa fa-sort mx-1" aria-hidden="true"></i>
+                <i class="fa fa-sort mx-1" aria-hidden="true"  @click="sort('dob  ')"></i>
               </th>
               <th scope="col">Address</th>
               <th scope="col">University</th>
@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(app, index) in apps" :key="index" class="mx-1 different-row">
+            <tr v-for="(app, index) in sortedApps" :key="index" class="mx-1 different-row">
               <td>{{app.fname + " " + app.lname}}</td>
               <td>{{app.email}}</td>
               <td>{{app.dob + " / " + getAge(app.dob)}}</td>
@@ -62,12 +62,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getApps"])
-  },
-    
-  watch: {
-    sortedCats() {
-      return this.cats.sort((a,b) => {
+    ...mapGetters(["getApps"]),
+
+     sortedApps() {
+      return this.apps.slice().sort((a,b) => {
         let modifier = 1;
         if(this.currentSortDir === 'desc') modifier = -1;
         if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
@@ -76,6 +74,7 @@ export default {
       });
     }
   },
+    
 
   methods: {
     ...mapActions(["fetchApps"]),
@@ -87,6 +86,8 @@ export default {
     if(s === this.currentSort) {
       this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
     }
+    console.log("hello");
+    
     this.currentSort = s;
   }
   },
