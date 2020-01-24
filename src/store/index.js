@@ -18,14 +18,13 @@ export default new Vuex.Store({
     profile: '',
     quiz: [],
     applications: [],
-    scores: []
+    scores: [],
+    batches: []
   },
   getters: {
     loggedIn(state) {
       return state.token !== null
     },
-
-    
 
     apiResponse: state => state.response,
     getUser: state => state.user,
@@ -33,7 +32,8 @@ export default new Vuex.Store({
     getQuiz: state => state.quiz,
     getAdmin: state => state.admin,
     getApps: state => state.applications,
-    getScores: state => state.scores
+    getScores: state => state.scores,
+    getBatches: state => state.batches
   },
 
   mutations: {
@@ -68,6 +68,9 @@ export default new Vuex.Store({
 
     setScores(state, user) {
       state.scores = user
+    },
+    setBatches(state, user) {
+      state.batches = user
     },
 
     retrieveToken(state, token) {
@@ -332,6 +335,18 @@ export default new Vuex.Store({
         
         commit('setResponse', responseObject)
 
+      }
+    },
+
+    async fetchBatches({ commit }) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        
+        const response = await axios.get(`http://localhost:3000/api/batches`);
+        commit('setBatches', response.data.data)
+
+      } catch (error) {
+        commit('setBatches', error.response)
       }
     },
 
