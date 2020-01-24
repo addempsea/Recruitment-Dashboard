@@ -193,8 +193,8 @@ a.router-link-exact-active {
 }
 
 .logo {
-  max-width: 160px;
-  max-height: 185px;
+  max-width: 100px;
+  max-height: 85px;
   border-radius: 50%;
 }
 </style>

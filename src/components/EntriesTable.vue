@@ -16,7 +16,7 @@
               <th scope="col">Email</th>
               <th scope="col">
                 DOB - Age
-                <i class="fa fa-sort mx-1" aria-hidden="true"  @click="sort('dob  ')"></i>
+                <i class="fa fa-sort mx-1" aria-hidden="true"  @click="sort('dob')"></i>
               </th>
               <th scope="col">Address</th>
               <th scope="col">University</th>
