@@ -103,7 +103,7 @@ export default {
         this.batch_id =  '';
         this.link =  '';
         this.closing_date = "";
-        this.instructions = "";
+        this.instruction = "";
         
       } else {
         alert("All fields are required");
