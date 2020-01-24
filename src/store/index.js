@@ -343,7 +343,7 @@ export default new Vuex.Store({
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         
         const response = await axios.get(`http://localhost:3000/api/batches`);
-        commit('setBatches', response.data.data)
+        commit('setBatches', response.data.data[response.data.data.length - 1])
 
       } catch (error) {
         commit('setBatches', error.response)

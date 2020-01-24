@@ -186,7 +186,11 @@ const routes = [
       requiresAdmin: true
     }
   },
-
+  {
+    path: '/advert',
+    name:'advert',
+    component: () => import(/* webpackChunkName: "Success" */ '../components/AdvertPage.vue')
+  }
 ]
 
 const router = new VueRouter({
