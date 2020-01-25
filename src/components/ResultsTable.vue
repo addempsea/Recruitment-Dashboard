@@ -16,18 +16,20 @@
               <th scope="col">Email</th>
               <th scope="col">
                 DOB - Age
-                <i class="fa fa-sort mx-1" aria-hidden="true"></i>
+                <i class="fa fa-sort mx-1" aria-hidden="true" @click="sort('dob')"></i>
               </th>
               <th scope="col">Address</th>
               <th scope="col">University</th>
               <th scope="col" >
                 CGPA
               </th>
-              <th scope="col">Score</th>
+              <th scope="col">Score
+                <i class="fa fa-sort mx-1" aria-hidden="true" @click="sort('score')"></i>
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(app, index) in apps" :key="index" class="mx-1 different-row">
+            <tr v-for="(app, index) in sortedApps" :key="index" class=" different-row">
               <td>{{app.userProfile.fname + " " + app.userProfile.lname}}</td>
               <td>{{app.userProfile.email}}</td>
               <td>{{app.userProfile.dob + " / " + getAge(app.userProfile.dob)}}</td>
@@ -63,12 +65,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getScores"])
-  },
-    
-  watch: {
-    sortedCats() {
-      return this.cats.sort((a,b) => {
+    ...mapGetters(["getScores"]),
+
+    sortedApps() {
+      return this.apps.slice().sort((a,b) => {
         let modifier = 1;
         if(this.currentSortDir === 'desc') modifier = -1;
         if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
@@ -77,6 +77,7 @@ export default {
       });
     }
   },
+    
 
   methods: {
     ...mapActions(["fetchScores"]),
