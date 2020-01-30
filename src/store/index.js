@@ -18,6 +18,7 @@ export default new Vuex.Store({
     profile: '',
     quiz: [],
     applications: [],
+    oneApp: '',
     scores: [],
     batches: []
   },
@@ -33,7 +34,8 @@ export default new Vuex.Store({
     getAdmin: state => state.admin,
     getApps: state => state.applications,
     getScores: state => state.scores,
-    getBatches: state => state.batches
+    getBatches: state => state.batches,
+    getOneApp: state => state.oneApp
   },
 
   mutations: {
@@ -52,6 +54,10 @@ export default new Vuex.Store({
 
     setProfile(state, user) {
       state.profile = user
+    },
+
+    setOneApp(state, user) {
+      state.oneApp = user
     },
 
     setQuiz(state, user) {
@@ -182,6 +188,18 @@ export default new Vuex.Store({
 
       } catch (error) {
         commit('setProfile', error.response)
+      }
+    },
+
+    async fetchOneApp({ commit }) {
+      try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        var id = localStorage.getItem('userP')
+        const response = await axios.get(`http://localhost:3000/api/application/${id}`);
+        commit('setOneApp', response.data.data)
+
+      } catch (error) {
+        commit('setOneApp', error.response)
       }
     },
 

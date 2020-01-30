@@ -16,9 +16,9 @@
       <div class="time-status">
         <div class="time">
           <p>Date of Application</p>
-          <span>19.01.20</span>
+          <span>{{getDate(this.getOneApp.createdAt)}}</span>
           <div class="horizontal"></div>
-          <p class="small-text">2 days since applied</p>
+          <p class="small-text">{{getDiffDate(this.getOneApp.createdAt)}} days since applied</p>
         </div>
         <div class="app-status">
           <p>Application Status</p>
@@ -66,13 +66,37 @@
 
 <script>
 import applicantSidebar from "@/components/applicantSidebar.vue";
+import { mapGetters, mapActions } from "vuex";
 // @ is an alias to /src
 
 export default {
   name: "applicantDashboard",
   components: {
     applicantSidebar
-  }
+  },
+  computed: {
+    ...mapGetters(["getOneApp"])
+  },
+
+  methods: {
+    ...mapActions(["fetchOneApp"]),
+    getDate(s) {
+      var datet = s.split("T");
+      return datet[0]
+    },
+    getDiffDate(s) {
+      var datet = s.split("T");
+      var day = new Date(datet[0]);
+      var datt = new Date()
+      var Difference_In_Time = datt - day.getTime();
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+      return Math.floor(Difference_In_Days) 
+    }
+  },
+
+  async mounted() {
+    await this.fetchOneApp()
+  },
 };
 </script>
 

@@ -5,7 +5,7 @@
       <h3>enyata</h3>
       <p>Applicant Form</p>
     </div>
-    <div class="form-wrapper container">
+    <div class="form-wrapper container" >
       <form class="mx-5 p-5" enctype="multipart/form-data" @submit.prevent="submitForm">
         <div class="fileup">
           <div class="upload-btn-wrapper">
@@ -56,7 +56,7 @@
           </div>
           <div class="col">
             <label>CGPA</label>
-            <input type="text" class="form-control" v-model="cgpa" name="cgpa" />
+            <input type="text" class="form-control" v-model="cgpa" name="cgpa" value="7"/>
           </div>
         </div>
 
@@ -81,12 +81,22 @@ export default {
       address: "",
       course: "",
       university: "",
-      message: ""
+      message: "",
+      profile: []
     };
+
+  },
+
+  async mounted() {
+    await this.fetchProfile(),
+    this.profile = await this.getProfile,
+    this.fname = await this.getProfile.fname,
+    this.lname = await this.getProfile.lname,
+    this.email = await this.getProfile.email
   },
 
   computed: {
-    ...mapGetters(["apiResponse", "getUser"]),
+    ...mapGetters(["apiResponse", "getProfile"]),
 
     isValid() {
       if (
@@ -107,7 +117,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["application"]),
+    ...mapActions(["application", "fetchProfile"]),
 
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
