@@ -190,6 +190,11 @@ const routes = [
     path: '/advert',
     name:'advert',
     component: () => import(/* webpackChunkName: "Success" */ '../components/AdvertPage.vue')
+  },
+  {
+    path: '/verify',
+    name:'verify',
+    component: () => import(/* webpackChunkName: "Success" */ '../views/VerifyPage.vue')
   }
 ]
 

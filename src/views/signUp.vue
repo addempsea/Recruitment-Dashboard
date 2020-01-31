@@ -24,7 +24,7 @@
           <div class="form-item my-3">
             <label for="name">Email Address</label>
             <br />
-            <input type="text" name="email" v-model="user.email" />
+            <input type="email" name="email" v-model="user.email" />
           </div>
           <div class="form-item">
             <label for="name">Password</label>
@@ -137,7 +137,7 @@ export default {
         setTimeout(() => {
           this.$router.push({ name: "login" });
           val.message = ""
-        }, 3000);
+        }, 8000);
       }
     }
   }
@@ -233,16 +233,16 @@ button {
 }
 
 .response {
-
+  
   text-align: center;
   
 }
 .response.failed {
   background-color: red;
-  color: #2b3c4e;
+  color: white;
 }
 .response.success {
   background-color: green;
-  color: #2b3c4e;
+  color: white;
 }
 </style>

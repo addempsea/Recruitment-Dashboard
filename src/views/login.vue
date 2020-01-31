@@ -6,7 +6,7 @@
       <h6>Applicant Log In</h6>
     </div>
     <div>
-      <p class="response col-5" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
+      <p class="response col-8" :class="[apiResponse ? apiResponse.type: '']">{{apiResponse.message}}</p>
       <form class="input-form" @submit.prevent="loging">
         <div class="form-item">
           <label for="name">Email Address</label> <br>

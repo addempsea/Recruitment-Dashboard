@@ -16,9 +16,9 @@
       <div class="time-status">
         <div class="time">
           <p>Date of Application</p>
-          <span>{{getDate(this.getOneApp.createdAt)}}</span>
+          <span>{{getDate(this.getOneApp.createdAt)  }}</span>
           <div class="horizontal"></div>
-          <p class="small-text">{{getDiffDate(this.getOneApp.createdAt)}} days since applied</p>
+          <p class="small-text">{{getDiffDate(this.getOneApp.createdAt)}} </p>
         </div>
         <div class="app-status">
           <p>Application Status</p>
@@ -81,16 +81,24 @@ export default {
   methods: {
     ...mapActions(["fetchOneApp"]),
     getDate(s) {
-      var datet = s.split("T");
-      return datet[0]
+      if (s != null) {
+        var datet = s.split("T");
+        return datet[0]
+      } else {
+        return "Not applied"
+      }
     },
     getDiffDate(s) {
-      var datet = s.split("T");
-      var day = new Date(datet[0]);
-      var datt = new Date()
-      var Difference_In_Time = datt - day.getTime();
-      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
-      return Math.floor(Difference_In_Days) 
+      if (s != null) {
+        var datet = s.split("T");
+        var day = new Date(datet[0]);
+        var datt = new Date()
+        var Difference_In_Time = datt - day.getTime();
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+        return Math.floor(Difference_In_Days) + "days since applied"
+      } else {
+        return "you have not applied"
+      }
     }
   },
 
